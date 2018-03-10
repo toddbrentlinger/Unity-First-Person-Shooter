@@ -6,39 +6,45 @@ public class GunCustom : MonoBehaviour {
 
     /* NOTES:
      * - Add ammo limit before have to reload by pressing "R"
-     * - Add ability to aim down sights by pressing Right-Mouse. Animate gun into position closer to camera with sights aligned to middle of screen.
-     * - 
+     * - Add ability to aim down sights by holding, or toggling, Right-Mouse. Animate gun into position closer to camera with sights aligned to middle of screen.
+     * - If target of Raycast is enemy, get access to enemy script of target do change its behavior
      */
 
     public float bulletForce = 5.0f;
-    public Transform bulletSpawn;
     // Time between rounds fired when button is held down
     public float cooldown = 0.1f;
 
+    private Transform bulletSpawn;
     private ParticleSystem muzzleFlash;
     private GameObject bulletHoleClone;
+    private LineRenderer bulletLineRenderer;
 
     // Bool to check if raycast hit target has rigidbody in update() and then change rigidbody in fixedupdate()
-    private bool hitTarget = false;
+    private bool moveTarget = false;
     // Reference to raycast hit of target object with rigidbody
     private RaycastHit targetRaycastHit;
 
+    // Animation
     private Animator animator; // Weapon animator
     private AudioSource audioSource; // Weapon audioSource
 
-    // Reference to rigidbody of collider hit in raycast
-    Rigidbody targetColliderRigidbody;
+    // Reference to Enemy instance if target has enemy tag. Can I somehow use a static variable for Enemy class instead of using GetComponent<Enemy>() on each enemy hit?
+    private Enemy targetEnemy;
 
-    // Physics.Raycast()
-    RaycastHit hit;
-    Ray ray;
+    // Physics.Raycast() - Is this necessary or can I just create new RaycastHit and Ray each time weapon fires
+    // private RaycastHit hit;
+    // private Ray ray;
 
     // Recoil animation (simple)
     float lastShotTime;
 
     void Awake()
     {
-        muzzleFlash = bulletSpawn.GetComponent<ParticleSystem>();
+        bulletSpawn = transform.Find("BulletSpawn");
+        // muzzleFlash = bulletSpawn.GetComponent<ParticleSystem>();
+        muzzleFlash = bulletSpawn.Find("MuzzleFlash").gameObject.GetComponent<ParticleSystem>();
+
+        bulletLineRenderer = bulletSpawn.transform.Find("BulletLineRenderer").GetComponent<LineRenderer>();
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
     }
@@ -65,7 +71,8 @@ public class GunCustom : MonoBehaviour {
 
             Vector2 screenCenterPoint = new Vector2(Screen.width / 2, Screen.height / 2);
 
-            ray = Camera.main.ScreenPointToRay(screenCenterPoint);
+            Ray ray = Camera.main.ScreenPointToRay(screenCenterPoint);
+            RaycastHit hit;
 
             // Get bulletHoleClone from ObjectPooler
             bulletHoleClone = ObjectPooler.SharedInstance.GetPooledObject("BulletHole");
@@ -90,11 +97,23 @@ public class GunCustom : MonoBehaviour {
                 // Set bullet hole active
                 bulletHoleClone.SetActive(true);
 
-                // If collider gameobject has rigidbody, add force from bullet impact
-                if (hit.rigidbody != null)
+                // If collider gameobject has rigidbody and NOT kinematic, add force from bullet impact
+                if (hit.rigidbody != null && !hit.rigidbody.isKinematic)
                 {
                     targetRaycastHit = hit;
-                    hitTarget = true;
+                    moveTarget = true;
+                }
+
+                // If collider is an Enemy AND isKinematic
+                if (hit.transform.tag == "Enemy" && hit.rigidbody.isKinematic)
+                {
+                    targetEnemy = hit.transform.GetComponent<Enemy>();
+
+                    // Normalized vector between hit point and bullet spawn multiplied by bulletForce factor
+                    Vector3 forceVec = (hit.point - bulletSpawn.transform.position).normalized * bulletForce;
+
+                    // Call Hit() method on Enemy instance with forceVector and hit point arguments
+                    targetEnemy.Hit(forceVec, hit.point);
                 }
             }
 
@@ -105,16 +124,15 @@ public class GunCustom : MonoBehaviour {
 
     void FixedUpdate()
     {
-        if (hitTarget)
+        // moveTarget is true if collider has rigidbody and is NOT kinematic
+        if (moveTarget)
         {
-            // Reference to raycast hit rigidbody
-            targetColliderRigidbody = targetRaycastHit.rigidbody;
             // Normalized vector between hit point and bullet spawn multiplied by bulletForce factor
             Vector3 forceVec = (targetRaycastHit.point - bulletSpawn.transform.position).normalized * bulletForce;
             // Add impulse force to target rigidbody
-            targetColliderRigidbody.AddForce(forceVec, ForceMode.Impulse);
-            // Set hitTarget bool to false
-            hitTarget = false;
+            targetRaycastHit.rigidbody.AddForceAtPosition(forceVec, targetRaycastHit.point, ForceMode.Impulse);
+            // Set moveTarget bool to false
+            moveTarget = false;
         }
     }
 

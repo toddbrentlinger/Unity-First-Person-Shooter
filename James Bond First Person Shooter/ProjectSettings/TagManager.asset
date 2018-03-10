@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Rocket
+  - Bullet
+  - Fire
+  - Explosion
+  - Gun
+  - BulletHole
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -13,11 +20,11 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Weapon
+  - Rocket
+  - BulletHole
+  - IgnorePlayerCollisions
   - 
   - 
   - 

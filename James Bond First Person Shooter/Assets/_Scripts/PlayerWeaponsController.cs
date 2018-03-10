@@ -9,9 +9,11 @@ public class PlayerWeaponsController : MonoBehaviour {
      * - Use scroll wheel to scroll between each weapon available, as well as individual number buttons
      */
 
-    public GameObject weapon; // Reference to weapon GameObject
+    public Transform[] weapons; // Array of references to weapon transforms
     public Transform defaultCrosshair;
     public Transform weaponCrosshair;
+
+    private Transform currWeapon = null;
 
 	// Use this for initialization
 	void Start () {
@@ -20,22 +22,32 @@ public class PlayerWeaponsController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown("1"))
+        if (Input.GetKeyDown("1"))
         {
             // Toggle weapon
-            EquipWeapon();
+            EquipWeapon(0);
         }
+        else if (Input.GetKeyDown("2")) EquipWeapon(1);
 	}
 
     // Method: Equip weapon
-    void EquipWeapon()
+    void EquipWeapon(int arrayIndex)
     {
         /* NOTES:
          *  Maybe use weapon.activeSelf instead of weapon.activeInHeirarchy
         */
 
-        // If weapon is NOT active
-        if (!weapon.activeInHierarchy)
+        // If currWeapon already active is weapon being equipped, end function
+        // if (currWeapon == weapons[arrayIndex]) return;
+
+        // Get new currWeapon reference to weapon in array
+        currWeapon = weapons[arrayIndex];
+
+        // If there is no weapon in array index, end function
+        if (currWeapon == null) return;
+
+        // If weapon is NOT active in heirarchy, equip weapon
+        if (!currWeapon.gameObject.activeInHierarchy)
         {
             // Deactivate defaultCrosshair
             defaultCrosshair.gameObject.SetActive(false);
@@ -44,9 +56,9 @@ public class PlayerWeaponsController : MonoBehaviour {
             weaponCrosshair.gameObject.SetActive(true);
 
             // Activate weapon GameObject
-            weapon.SetActive(true);
+            currWeapon.gameObject.SetActive(true);
         }
-        // Else weapon is active
+        // Else weapon is active in heirarchy, unequip weapon
         else
         {
             // Deactivate weaponCrosshair
@@ -56,7 +68,7 @@ public class PlayerWeaponsController : MonoBehaviour {
             defaultCrosshair.gameObject.SetActive(true);
 
             // Deactivate weapon GameObject
-            weapon.SetActive(false);
+            currWeapon.gameObject.SetActive(false);
         }
         
     }
