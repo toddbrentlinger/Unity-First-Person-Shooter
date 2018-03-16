@@ -33,12 +33,17 @@ public class BulletHoleController : MonoBehaviour {
 
     private void InstantiateSingleDecal()
     {
+        // Instantiate prefab decal as child of BulletHoleController gameobject
         GameObject spawned = (GameObject)Instantiate(bulletHoleDecalPrefab, transform);
 
+        // Add decal to decalsInPool
         decalsInPool.Enqueue(spawned);
+
+        // Deactivate decal
         spawned.SetActive(false);
     }
 
+    // Public method to spawn decal using RaycastHit
     public void SpawnDecal(RaycastHit hit)
     {
         GameObject decal = GetNextAvailableDecal();
@@ -55,11 +60,12 @@ public class BulletHoleController : MonoBehaviour {
 
     private GameObject GetNextAvailableDecal()
     {
+        // If there is a decal in pool, return decal from decalsInPool
         if (decalsInPool.Count > 0)
             return decalsInPool.Dequeue();
-
-        GameObject oldestActiveDecal = decalsActiveInWorld.Dequeue();
-        return oldestActiveDecal;
+        // Else there is no decal in pool, return decal from decalsActiveInWorld
+        else
+            return decalsActiveInWorld.Dequeue();
     }
 
 	// Use this for initialization

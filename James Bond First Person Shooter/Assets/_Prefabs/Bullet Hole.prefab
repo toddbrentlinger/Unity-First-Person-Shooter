@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 23049781136747612}
   - component: {fileID: 199529735499299952}
   - component: {fileID: 198672218234021134}
+  - component: {fileID: 114762841062757582}
   m_Layer: 11
   m_Name: Bullet Hole
   m_TagString: BulletHole
@@ -84,6 +85,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1252277028824882}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114762841062757582
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1252277028824882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3510a35dd9538d4aa3a47d0ffc2b128, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &198672218234021134
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -96,7 +108,7 @@ ParticleSystem:
   stopAction: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 0

@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class FirstPersonController : MonoBehaviour {
 
+    /* NOTES:
+     * - Lean Left/Right - Q/E
+     * - Crouch - C    
+     */
+
     public float movementSpeed = 8.0f;
     public float mouseSensitivity = 3.0f;
     public float verticalAngleLimit = 60.0f;

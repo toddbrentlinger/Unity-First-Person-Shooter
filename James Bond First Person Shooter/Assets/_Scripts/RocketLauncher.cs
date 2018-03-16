@@ -18,7 +18,7 @@ public class RocketLauncher : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         // Call fireRocket() method when holding down CTRL or Right-Mouse
-        if (Input.GetButtonDown("Fire2")) {
+        if (Input.GetButtonDown("Fire1")) {
 
             Vector2 screenCenterPoint = new Vector2(Screen.width / 2, Screen.height / 2);
 
@@ -46,7 +46,7 @@ public class RocketLauncher : MonoBehaviour {
         // Rigidbody rocketClone = (Rigidbody)Instantiate(rocket, transform.position, transform.rotation * rocket.transform.rotation);
 
         // Create the rocket from ObjectPooler
-        rocketClone = ObjectPooler.SharedInstance.GetPooledObject("Rocket").GetComponent<Rocket>();
+        rocketClone = ObjectPooler.sharedInstance.GetPooledObject("Rocket").GetComponent<Rocket>();
         // If rocket is null, there is no rocket to fire
         if (rocketClone == null) return;
 

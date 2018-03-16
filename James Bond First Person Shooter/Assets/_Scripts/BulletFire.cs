@@ -19,7 +19,7 @@ public class BulletFire : MonoBehaviour {
     void Fire()
     {
         // Create the bullet from the bullet prefab
-        GameObject bullet = ObjectPooler.SharedInstance.GetPooledObject("Bullet01");
+        GameObject bullet = ObjectPooler.sharedInstance.GetPooledObject("Bullet01");
 
         // If bullet is null, there is no bullet to fire
         if (bullet == null) return;

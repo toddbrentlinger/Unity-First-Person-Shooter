@@ -6,11 +6,11 @@ TagManager:
   tags:
   - Rocket
   - Bullet
-  - Fire
   - Explosion
-  - Gun
   - BulletHole
   - Enemy
+  - Weapon
+  - Gun
   layers:
   - Default
   - TransparentFX

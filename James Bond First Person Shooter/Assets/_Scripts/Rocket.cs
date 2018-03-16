@@ -44,7 +44,7 @@ public class Rocket : MonoBehaviour {
     void Start()
     {
         // Ignore collisions between rocket and player (NOTE: use short delay after firing and then allow collisions)
-        Physics.IgnoreCollision(GetComponent<Collider>(), GameObject.FindWithTag("Player").GetComponent<Collider>());
+        // Physics.IgnoreCollision(GetComponent<Collider>(), GameObject.FindWithTag("Player").GetComponent<Collider>());
     }
 
     // Update is called once per frame
