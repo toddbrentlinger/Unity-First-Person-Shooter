@@ -209,8 +209,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1453359686889410}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.0028797092, y: -0.006370296, z: -0.000018345045, w: 0.9999756}
+  m_LocalPosition: {x: 0.23600006, y: -0.472, z: 0.8369999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4901194176740838}
@@ -487,7 +487,7 @@ Animator:
   m_GameObject: {fileID: 1943335546350800}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3aa44dba9ecf44048809c558d610ffb8, type: 2}
+  m_Controller: {fileID: 9100000, guid: 0592668c492f6bf48a99ae7cd4dc4baf, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -506,14 +506,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12c1fa632545fa0459712a3f3647dbdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clipSize: 16
+  clipSize: 25
   gunDamage: 4
-  fireRate: 0.2
+  fireRate: 600
   firingMode: 2
   weaponRange: 50
-  bulletForce: 0.5
+  bulletForce: 0.7
   fireWeaponAudioClip: {fileID: 8300000, guid: 2203773368e4340d98c114f55c2dd7fd, type: 3}
-  emptyChamberAudioClip: {fileID: 8300000, guid: cd8e2572ac7877244a842497599c4cf6,
+  emptyChamberAudioClip: {fileID: 8300000, guid: 8a4cdbb759dc74f42aaf8bc341cb00de,
     type: 3}
   weaponReloadAudioClip: {fileID: 8300000, guid: 3c5c1d4d7b9307c458890a4beb12e4ae,
     type: 3}

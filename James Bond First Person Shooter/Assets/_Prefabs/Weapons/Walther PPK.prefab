@@ -177,7 +177,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1924788840555808
 GameObject:
   m_ObjectHideFlags: 1
@@ -236,7 +236,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1707067799112552}
   m_LocalRotation: {x: -0.008376661, y: -0.01361262, z: -0.00011404286, w: 0.99987227}
-  m_LocalPosition: {x: -0.073, y: -0.093, z: 1.064}
+  m_LocalPosition: {x: 0.42700005, y: -0.49300003, z: 1.0640001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4697443732299868}
@@ -736,7 +736,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clipSize: 9
   gunDamage: 10
-  fireRate: 0.3
+  fireRate: 350
   firingMode: 0
   weaponRange: 50
   bulletForce: 1.5
@@ -745,7 +745,6 @@ MonoBehaviour:
     type: 3}
   weaponReloadAudioClip: {fileID: 8300000, guid: fc0df4fd4363cd6468671b4eda04a309,
     type: 3}
-  ammoCountText: {fileID: 0}
 --- !u!120 &120105048632389768
 LineRenderer:
   m_ObjectHideFlags: 1

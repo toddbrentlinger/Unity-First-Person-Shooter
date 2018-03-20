@@ -204,8 +204,8 @@ public class GunCustom : MonoBehaviour {
                 // Normalized vector between hit point and bullet spawn multiplied by bulletForce factor
                 Vector3 forceVec = (hit.point - bulletSpawn.transform.position).normalized * bulletForce;
 
-                // Call Damage() method on Enemy instance with forceVector and hit point arguments
-                hit.transform.GetComponent<Enemy>().Damage(gunDamage, forceVec, hit.point);
+                // Call Damage() method on Enemy instance with forceVector and collider hit arguments
+                hit.transform.GetComponentInParent<Enemy>().Damage(gunDamage, forceVec, hit);
             }
         }
     }
