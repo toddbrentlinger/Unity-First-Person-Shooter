@@ -1,6 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
+/* NOTES:
+ * Simplified version of MouseLook script.
+ * Uses simplified StandardAssets FirstPersonController script
+ */
+
 [Serializable]
 public class MouseLook {
     public float XSensitivity = 2f;

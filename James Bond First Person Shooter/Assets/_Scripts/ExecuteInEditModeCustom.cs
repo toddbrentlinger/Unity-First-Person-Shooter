@@ -5,11 +5,13 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class ExecuteInEditModeCustom : MonoBehaviour {
 
-	void OnEnable ()
+    public float reductionFactor = .25f;
+
+	void OnDisable ()
     {
         Rigidbody[] children = GetComponentsInChildren<Rigidbody>();
 
         foreach (Rigidbody rb in children)
-            rb.mass *= 0.25f;
+            rb.mass *= reductionFactor;
 	}
 }

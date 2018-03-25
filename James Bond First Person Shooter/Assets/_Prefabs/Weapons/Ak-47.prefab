@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 4807776192355656}
   - component: {fileID: 198008012632238460}
   - component: {fileID: 199176736935867674}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CartridgeEject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 4083285920383684}
   - component: {fileID: 198598349960701462}
   - component: {fileID: 199728911204844660}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Puff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -308,15 +308,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1901876790112754}
-  m_LocalRotation: {x: -0.005584777, y: -0.008813584, z: -0.000049224585, w: 0.9999456}
-  m_LocalPosition: {x: 0.46300006, y: -0.39999998, z: 1.2490001}
+  m_LocalRotation: {x: -0.009597652, y: -0.018062342, z: -0.00017339233, w: 0.9997908}
+  m_LocalPosition: {x: 0.52, y: -0.4, z: 1.16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4252874858545902}
   - {fileID: 4485266994114452}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -0.64, y: -1.01, z: 0}
+  m_LocalEulerAnglesHint: {x: -1.1, y: -2.07, z: 0}
 --- !u!23 &23424418217926110
 MeshRenderer:
   m_ObjectHideFlags: 1

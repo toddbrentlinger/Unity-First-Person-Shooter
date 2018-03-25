@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 4091427203467120}
   - component: {fileID: 198809416769223738}
   - component: {fileID: 199208016312215248}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CartridgeEject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 4824085972697288}
   - component: {fileID: 198663894956556920}
   - component: {fileID: 199211693459679088}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Puff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
