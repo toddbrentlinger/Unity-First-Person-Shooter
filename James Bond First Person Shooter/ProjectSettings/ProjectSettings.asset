@@ -11,7 +11,7 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
+  companyName: Lone Wolf Games
   productName: First Person Shooter
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -39,7 +39,7 @@ PlayerSettings:
     width: 1
     height: 1
   m_SplashScreenLogos:
-  - logo: {fileID: 21300000, guid: 26fe16d8115a0564dacf0f8d7211e59b, type: 3}
+  - logo: {fileID: 21300000, guid: 491920af5148c3d4d8ed35b2b7c53207, type: 3}
     duration: 3
   - logo: {fileID: 10404, guid: 0000000000000000e000000000000000, type: 0}
     duration: 2

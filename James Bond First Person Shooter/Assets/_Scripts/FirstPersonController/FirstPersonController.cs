@@ -14,45 +14,54 @@ using UnityEngine;
 public class FirstPersonController : MonoBehaviour {
 
     // Enumeration of Movement to choose between state of movement
-    // NOTE: Add Jumping MoveState
-    private enum MoveState { Walking, Running, Crouching };
+    // NOTE: Add MoveState Jumping, Falling, Leaning, Sliding, ...
+    private enum MoveState { Walking, Running, Jumping, Crouching, Falling };
     [SerializeField] private MoveState m_moveState = MoveState.Walking; // moveState initialized to idle
 
-    // [SerializeField] private bool m_IsWalking;
-    [SerializeField] private float m_WalkSpeed = 5f;
-    [SerializeField] private float m_RunSpeed = 10f;
-    [SerializeField] [Range(0f, 1f)] private float m_RunstepLenghten = .7f;
-    [SerializeField] private float m_JumpSpeed = 8f;
+    [Header("Movement")]
     [SerializeField] private float m_pushPower = .1f;
     [SerializeField] private float m_StickToGroundForce = 10f;
     [SerializeField] private float m_GravityMultiplier = 2f;
     [SerializeField] private MouseLook m_MouseLook;
-    [SerializeField] private float m_StepInterval = 5f;
-    [SerializeField] private AudioClip[] m_FootstepSounds;    // an array of footstep sounds that will be randomly selected from.
-    [SerializeField] private AudioClip m_JumpSound;           // the sound played when character leaves the ground.
-    [SerializeField] private AudioClip m_LandSound;           // the sound played when character touches back on ground.
-
     private Camera m_Camera;
-    private bool m_Jump;
     private Vector2 m_Input;
     private Vector3 m_MoveVelocity = Vector3.zero;
     private CharacterController m_CharacterController;
     private CollisionFlags m_CollisionFlags;
     private bool m_PreviouslyGrounded = true;
+
+    [Header("Walking")]
+    // [SerializeField] private bool m_IsWalking;
+    [SerializeField] private float m_WalkSpeed = 5f;
+    [SerializeField] private float m_StepInterval = 5f;
     private float m_StepCycle;
     private float m_NextStep;
+
+    [Header("Running")]
+    [SerializeField] private float m_RunSpeed = 10f;
+    [SerializeField] [Range(0f, 1f)] private float m_RunstepLenghten = .7f;
+
+    [Header("Jumping")]
+    [SerializeField] private float m_JumpSpeed = 8f;
+    private bool m_Jump;
     private bool m_Jumping;
-    private AudioSource m_AudioSource;
 
     // Crouching
+    [Header("Crouching")]
     [SerializeField] private float m_crouchHeight = .65f;
     [SerializeField] private float m_crouchSpeed = 2f;
-    [SerializeField] private float m_cruchWalkingSpeed = 3f;
-
+    [SerializeField] private float m_crouchWalkingSpeed = 3f;
+    [SerializeField] [Range(0f, 1f)] private float m_crouchStepReduction = .8f;
     // private bool m_isCrouching = false;
     private float m_originalCameraLocalHeight;
     private float m_originalCharacterControllerHeight;
     private float m_originalCharacterControllerCenterY;
+
+    [Header("Audio")]
+    [SerializeField] private AudioClip[] m_FootstepSounds;    // an array of footstep sounds that will be randomly selected from.
+    [SerializeField] private AudioClip m_JumpSound;           // the sound played when character leaves the ground.
+    [SerializeField] private AudioClip m_LandSound;           // the sound played when character touches back on ground.
+    private AudioSource m_AudioSource;
 
     private void Awake()
     {
@@ -100,7 +109,6 @@ public class FirstPersonController : MonoBehaviour {
         // If player lands from jumping
         if (!m_PreviouslyGrounded && m_CharacterController.isGrounded)
         {
-            Debug.Log("Player lands from jumping");
             PlayLandingSound();
             m_MoveVelocity.y = 0f;
             m_Jumping = false;
@@ -162,7 +170,7 @@ public class FirstPersonController : MonoBehaviour {
 
         // Get a normal for the surface that is being touched to move along it
         RaycastHit hitInfo;
-        Physics.SphereCast(transform.position, m_CharacterController.radius, Vector3.down, out hitInfo,
+        Physics.SphereCast(transform.position + Vector3.up * m_CharacterController.height / 2f, m_CharacterController.radius, Vector3.down, out hitInfo,
                            m_CharacterController.height / 2f, Physics.AllLayers, QueryTriggerInteraction.Ignore);
         desiredMove = Vector3.ProjectOnPlane(desiredMove, hitInfo.normal).normalized;
 
@@ -174,9 +182,13 @@ public class FirstPersonController : MonoBehaviour {
         if (!m_Jump)
             m_Jump = Input.GetButtonDown("Jump");
 
+        // NOTE: For CharacterController.isGrounded to work, gravity must be applied on every frame
+        // Set vertical y-axis velocity
         if (m_CharacterController.isGrounded)
         {
             // NOTE: What is the purpose of this if the character controller isGrounded?
+            // Gravity must be applied for isGrounded to work correctly. Decrementing the y-velocity is more efficient than
+            // calling Physics.gravity to apply gravity to object and multiplying by Time.deltaTime
             m_MoveVelocity.y = -m_StickToGroundForce;
 
             if (m_Jump)

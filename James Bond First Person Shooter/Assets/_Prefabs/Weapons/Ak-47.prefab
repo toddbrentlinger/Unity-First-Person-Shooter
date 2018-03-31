@@ -154,6 +154,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4900891482611876}
   - component: {fileID: 114096338354525396}
+  - component: {fileID: 114620338191861058}
   m_Layer: 9
   m_Name: Ak-47
   m_TagString: Weapon
@@ -543,7 +544,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1901876790112754}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 12c1fa632545fa0459712a3f3647dbdf, type: 3}
   m_Name: 
@@ -570,6 +571,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 998bf4c80656e6548a756e18128a7d64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114620338191861058
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1901876790112754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e3190911f691bf4681e0330b0fb8118, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_firingMode: 2
+  m_clipSize: 30
+  m_fireRate: 600
+  m_reloadDurationFactor: 1
+  m_weaponRange: 50
+  m_gunDamage: 6
+  m_bulletForce: 1.1
+  m_bulletScatter: 8
+  m_fireWeaponAudioClip: {fileID: 8300000, guid: 8602b7d5cd15c1943a50aa53f171c8cf,
+    type: 3}
+  m_emptyChamberAudioClip: {fileID: 8300000, guid: 8a4cdbb759dc74f42aaf8bc341cb00de,
+    type: 3}
+  m_weaponReloadAudioClip: {fileID: 8300000, guid: 3c5c1d4d7b9307c458890a4beb12e4ae,
+    type: 3}
 --- !u!120 &120064321279903780
 LineRenderer:
   m_ObjectHideFlags: 1

@@ -12,6 +12,9 @@ public class Enemy : MonoBehaviour {
      * - The damage dealt to the target is dependent on several factors, including the weapon's base damage, the damage dropoff, the hitbox that is hit, effects of bullet penetration, effects of armor penetration
      */
 
+    // Static variable of number of enemies
+    public static int enemyCount = 0;
+    
     public int currentHealth = 25;
     private bool m_isAlive = true;
 
@@ -28,13 +31,22 @@ public class Enemy : MonoBehaviour {
 
     // Animation
     private Animator m_enemyAnimator;
-
+    /*
+    // Increment static enemyCount whenever a new Enemy is instantiated using constructor function
+    public Enemy()
+    {
+        enemyCount++;
+    }
+    */
 	void Awake ()
     {
         m_enemyRigidbody = GetComponent<Rigidbody>();
         m_limbRigidbodies = GetComponentsInChildren<Rigidbody>();
         m_enemyAnimator = GetComponent<Animator>();
         m_enemyNavMeshAgent = GetComponent<NavMeshAgent>();
+
+        // Increment static enemyCount for every existing gameObject component class Enemy
+        enemyCount++;
     }
 
     void Start()
@@ -118,6 +130,10 @@ public class Enemy : MonoBehaviour {
 
         // Set isAlive to false
         m_isAlive = false;
+
+        // Decrement static enemyCount and update GUI
+        enemyCount--;
+        CanvasUI.sharedInstance.UpdateEnemyCount();
 
         // Disable NavMeshAgent
         if (m_enemyNavMeshAgent)

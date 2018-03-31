@@ -1,12 +1,14 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 /* NOTES:
  * Simplified version of MouseLook script.
  * Uses simplified StandardAssets FirstPersonController script
+ * 
+ * - Transform.Rotate for camera instead of directly changing transform.localRotation
+ * - Create private references to camera.transform and character.transform instead of passing references each time to LookRotation()
  */
 
-[Serializable]
+[System.Serializable]
 public class MouseLook {
     public float XSensitivity = 2f;
     public float YSensitivity = 2f;
@@ -41,7 +43,7 @@ public class MouseLook {
         character.Rotate(0, m_CharacterRot, 0);
         camera.localRotation = Quaternion.Euler(m_CameraRot, 0, 0);
 
-        // If lockCursor is true, check & properly lock the cursor
+        // If lockCursor is true, check input & properly lock the cursor
         if (lockCursor)
         {
             if (Input.GetKeyUp(KeyCode.Escape))
