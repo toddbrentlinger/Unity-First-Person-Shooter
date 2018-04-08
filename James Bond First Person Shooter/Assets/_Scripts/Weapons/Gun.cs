@@ -18,37 +18,44 @@ using UnityEngine;
 * - When aiming down sights, increase accuracy by reducing bulletScatter if any
 */
 
+public enum GunState { Idle, HipFire, Reload, MoveBob};
+
 public class Gun : MonoBehaviour {
+
+    [SerializeField] private GunState m_gunState = GunState.Idle;
 
     // Enumeration of FiringMode to choose weapon firing mode
     private enum FiringMode { SemiAuto, Burst, FullAuto };
     [SerializeField] private FiringMode m_firingMode = FiringMode.SemiAuto;
 
     [SerializeField] private int m_clipSize = 8; // Number of bullets in single clip before having to reload
-    [SerializeField] [Tooltip("The rate of fire in rounds per minute (RPM)")]
+    [SerializeField] [Tooltip("Rate of fire in rounds per minute (RPM)")]
     private float m_fireRate = 350f; // The rate of fire in rounds per minute (RPM)
     [SerializeField] private float m_reloadDurationFactor = 1.0f; // multiplied to length of reload animation to adjust duration of animation
     [SerializeField] private float m_weaponRange = 50f; // Length of ray cast to test against colliders
     [SerializeField] private int m_gunDamage = 1; // How much damage is applied to target health. Interacts with Health script on target
     [SerializeField] private float m_bulletForce = 2.0f; // Force of bullet on rigidbodies
     [SerializeField] private float m_bulletScatter = 0; // Value of zero is NO scatter, perfect accuracy
+    [SerializeField] private float m_bulletSpeed = 400f; // Speed of bullet (m/s)
 
     [Header("Audio")]
     [SerializeField] private AudioClip m_fireWeaponAudioClip; // AudioClip of weapon firing
     [SerializeField] private AudioClip m_emptyChamberAudioClip; // AudoClip of empty chamber click
     [SerializeField] private AudioClip m_weaponReloadAudioClip; // AudioClip of weapon reloading
 
-    private bool m_canShoot = true; // Bool to see if weapon can be shot (Ex. should NOT fire when reloading), initialized to true so weapon will fire
+    private bool m_canShoot = true; // Bool to see if weapon can be shot (Ex. should NOT fire when reloading or game is paused), initialized to true so weapon will fire
     private int m_ammoInClip; // Reference to current amount of ammo in clip
     private float m_nextShotTime = 0f; // Global time full-auto weapon can fire again between shots while button is held down
 
     private bool m_isAiming = false;
+    private bool m_isReloading = false;
 
     private Transform m_bulletSpawn; // Transform of point to spawn bullet firing effects
     private ParticleSystem m_muzzleFlash; // Muzzle flash particle system to play when gun fires
     private LineRenderer m_bulletTrail; // Bullet trail line renderer
     private ParticleSystem m_cartridgeEject; // Cartridge eject particle system
 
+    private FPSController m_fpsController;
     private Camera m_fpsCamera;
 
     // NOTE: Should I declare GameObject in FireWeapon() method or continue to use class property?
@@ -64,15 +71,18 @@ public class Gun : MonoBehaviour {
     {
         Transform gunModel = transform.Find("GunModel");
         m_gunAnimator = gunModel.GetComponent<Animator>();
+        if (m_gunAnimator == null)
+            m_gunAnimator = GetComponent<Animator>();
         m_gunAudioSource = gunModel.GetComponent<AudioSource>();
 
         m_ammoInClip = m_clipSize; // Initialize ammoInClip to a full clip
 
-        m_bulletSpawn = transform.Find("BulletEffects");
+        m_bulletSpawn = gunModel.Find("BulletEffects");
         m_muzzleFlash = m_bulletSpawn.Find("MuzzleFlash").gameObject.GetComponent<ParticleSystem>();
-        m_bulletTrail = m_bulletSpawn.Find("BulletLineRenderer").GetComponent<LineRenderer>();
+        m_bulletTrail = transform.Find("BulletLineRenderer").GetComponent<LineRenderer>();
         m_cartridgeEject = m_bulletSpawn.Find("CartridgeEject").GetComponent<ParticleSystem>();
 
+        m_fpsController = GetComponentInParent<FPSController>();
         m_fpsCamera = Camera.main;
     }
 
@@ -80,6 +90,10 @@ public class Gun : MonoBehaviour {
     {
         // Set ammoCountText
         CanvasUI.sharedInstance.UpdateAmmoCount(m_ammoInClip, m_clipSize);
+
+        // Reset bools in case weapon was changed in middle of reload
+        m_canShoot = true;
+        m_isReloading = false;
     }
 	
 	private void Update ()
@@ -94,7 +108,7 @@ public class Gun : MonoBehaviour {
 
             case FiringMode.SemiAuto:
                 // If Fire1 button is held down AND current time is larger than nextShotTime
-                if (Input.GetButton("Fire1") && Time.time > m_nextShotTime)
+                if (Input.GetButtonDown("Fire1") && Time.time > m_nextShotTime)
                     FireWeapon();
                 break;
         }
@@ -102,7 +116,8 @@ public class Gun : MonoBehaviour {
         // If "R" button or MiddleMouseButton is pressed, reload weapon
         if (Input.GetKeyDown(KeyCode.R) || Input.GetMouseButtonDown(2))
         {
-            StartCoroutine("ReloadWeapon");
+            if (!m_isReloading)
+                StartCoroutine("ReloadWeapon");
         }
     }
 
@@ -156,6 +171,9 @@ public class Gun : MonoBehaviour {
         // Set Fire animation parameter on animator to true
         m_gunAnimator.SetTrigger("Fire");
 
+        StartCoroutine("FireBullet");
+
+        /*
         Vector2 screenCenterPoint = new Vector2(Screen.width / 2, Screen.height / 2);
         // Apply bulletScatter
         if (m_bulletScatter != 0)
@@ -213,12 +231,113 @@ public class Gun : MonoBehaviour {
                 hit.transform.GetComponentInParent<Enemy>().Damage(m_gunDamage, forceVec, hit);
             }
         }
+        */
+    }
+
+    IEnumerator FireBullet()
+    {
+        Vector2 screenCenterPoint = new Vector2(Screen.width / 2, Screen.height / 2);
+        // Apply bulletScatter
+        if (m_bulletScatter != 0)
+            screenCenterPoint += Random.insideUnitCircle * m_bulletScatter;
+        Ray ray = m_fpsCamera.ScreenPointToRay(screenCenterPoint);
+        RaycastHit hit;
+
+        // Bit shift the index of the layer (8) to get a bit mask
+        int layerMask = 1 << 8;
+        // This would cast rays only against colliders in layer 8(Player).
+        // But instead we want to collide against everything except layer 8(Player). 
+        // The ~ operator does this, it inverts a bitmask.
+        layerMask = ~layerMask;
+        // NOTE: Could use IgnoreRaycast layer instead? Cannot since it's using Player layer instead
+
+        Physics.Raycast(ray, out hit, m_weaponRange, layerMask);
+        Vector3 targetPoint;
+        //float timeToHit;
+        //float targetDistance;
+        if (hit.collider != null)
+        {
+            targetPoint = hit.point;
+            //targetDistance = hit.distance;
+            //timeToHit = Time.time + hit.distance / m_bulletSpeed;
+        }
+        else
+        {
+            //targetPoint = m_fpsCamera.transform.position + m_fpsCamera.transform.forward * m_weaponRange;
+            targetPoint = m_fpsCamera.ViewportToWorldPoint(new Vector3(.5f, .5f, m_weaponRange));
+            //targetDistance = m_weaponRange;
+            //timeToHit = Time.time + m_weaponRange / m_bulletSpeed;
+        }
+        //Debug.DrawLine(m_bulletTrail.transform.position, targetPoint, Color.green, .5f);
+        m_bulletTrail.transform.LookAt(targetPoint);
+        //Vector3 currPoint = m_bulletTrail.transform.position;
+        float targetDistance = (targetPoint - m_bulletTrail.transform.position).magnitude;
+        float currDistance = 0;
+        //while (Time.time < timeToHit)
+        while (currDistance < targetDistance)
+        {
+            currDistance += m_bulletSpeed * Time.deltaTime;
+            currDistance = Mathf.Clamp(currDistance, 0, targetDistance);
+            m_bulletTrail.SetPosition(1, Vector3.forward * currDistance);
+
+            //currPoint = m_bulletTrail.GetPosition(1) + Vector3.forward * m_bulletSpeed * Time.deltaTime;
+            //m_bulletTrail.SetPosition(1, m_bulletTrail.GetPosition(1) + Vector3.forward * m_bulletSpeed * Time.deltaTime);
+
+            yield return null;
+        }
+
+        // Get bulletHoleClone from ObjectPooler
+        m_bulletHoleClone = ObjectPooler.sharedInstance.GetPooledObject("BulletHole");
+
+        // If there is a bulletHoleClone and physics raycast hits a collider
+        if (m_bulletHoleClone != null && hit.collider != null)
+        {
+            // Get bulletHolePosition a short distance above the hit point
+            // Vector3 bulletHolePosition = hit.point + hit.normal * .01f;
+
+            // Get bulletHoleRotation by randomly spinning bulletHole and orient in line with hit point normal
+            // Quaternion randRot = Quaternion.Euler(Vector3.forward * Random.Range(0, 360));
+            // Quaternion bulletHoleRotation = Quaternion.FromToRotation(-Vector3.forward, hit.normal) * randRot;
+
+            // Set bulletHolePosition a short distance above the hit point
+            m_bulletHoleClone.transform.position = hit.point + hit.normal * .01f;
+            // Set bulletHoleRotation by randomly spinning bulletHole and orient in line with hit point normal
+            m_bulletHoleClone.transform.rotation = Quaternion.FromToRotation(-Vector3.forward, hit.normal)
+                * Quaternion.Euler(Vector3.forward * Random.Range(0, 360));
+
+            // Set bullet hole parent to object that raycasthit hits
+            m_bulletHoleClone.transform.SetParent(hit.transform);
+            // Set bullet hole active
+            m_bulletHoleClone.SetActive(true);
+
+            // If collider gameobject has rigidbody AND is NOT kinematic, add force from bullet impact
+            if (hit.rigidbody != null && !hit.rigidbody.isKinematic)
+            {
+                // Set reference to 
+                m_targetRaycastHit = hit;
+                m_moveTarget = true;
+            }
+
+            // If collider is an Enemy AND isKinematic
+            if (hit.transform.tag == "Enemy" && hit.rigidbody.isKinematic)
+            {
+                // Normalized vector between hit point and bullet spawn multiplied by bulletForce factor
+                Vector3 forceVec = (hit.point - m_bulletSpawn.transform.position).normalized * m_bulletForce;
+
+                // Call Damage() method on Enemy instance with forceVector and collider hit arguments
+                hit.transform.GetComponentInParent<Enemy>().Damage(m_gunDamage, forceVec, hit);
+            }
+        }
+
+        // Reset bulletTrail
+        m_bulletTrail.SetPosition(1, Vector3.zero);
     }
 
     IEnumerator ReloadWeapon()
     {
-        // Set canShoot to false
+        // Set canShoot to false and isReloading to true
         m_canShoot = false;
+        m_isReloading = true;
 
         // Play reload animation
         m_gunAnimator.SetTrigger("Reload");
@@ -236,12 +355,8 @@ public class Gun : MonoBehaviour {
         // Update ammoCountText
         CanvasUI.sharedInstance.UpdateAmmoCount(m_ammoInClip, m_clipSize);
 
-        // Set canShoot to true
+        // Set canShoot to true and isReloading to false
+        m_isReloading = false;
         m_canShoot = true;
-    }
-
-    private void OnDisable()
-    {
-
     }
 }

@@ -47,7 +47,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1408085129858380
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
@@ -96,15 +96,14 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1654994369129390
 GameObject:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4427115060614996}
   - component: {fileID: 120064321279903780}
-  - component: {fileID: 114264621733124702}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: BulletLineRenderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,8 +152,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4900891482611876}
-  - component: {fileID: 114096338354525396}
   - component: {fileID: 114620338191861058}
+  - component: {fileID: 114817437170105416}
   m_Layer: 9
   m_Name: Ak-47
   m_TagString: Weapon
@@ -244,6 +243,7 @@ Transform:
   - {fileID: 4156714422461530}
   - {fileID: 4300237835891016}
   - {fileID: 4001268873466340}
+  - {fileID: 4485266994114452}
   m_Father: {fileID: 4900891482611876}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -267,10 +267,10 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1654994369129390}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.106599994, z: 0.8529999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4485266994114452}
+  m_Father: {fileID: 4900891482611876}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4485266994114452
@@ -280,14 +280,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1408085129858380}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.1066, z: 0.853}
+  m_LocalPosition: {x: 0, y: 0.106599994, z: 0.8529999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4111736457295112}
-  - {fileID: 4427115060614996}
   - {fileID: 4807776192355656}
-  m_Father: {fileID: 4900891482611876}
-  m_RootOrder: 1
+  m_Father: {fileID: 4252874858545902}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4807776192355656
 Transform:
@@ -301,7 +300,7 @@ Transform:
   m_Children:
   - {fileID: 4083285920383684}
   m_Father: {fileID: 4485266994114452}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -40, y: 90.00001, z: 0}
 --- !u!4 &4900891482611876
 Transform:
@@ -314,7 +313,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4252874858545902}
-  - {fileID: 4485266994114452}
+  - {fileID: 4427115060614996}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -1.1, y: -2.07, z: 0}
@@ -538,39 +537,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114096338354525396
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1901876790112754}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12c1fa632545fa0459712a3f3647dbdf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clipSize: 30
-  gunDamage: 6
-  fireRate: 600
-  firingMode: 2
-  weaponRange: 50
-  bulletForce: 1.1
-  fireWeaponAudioClip: {fileID: 8300000, guid: 8602b7d5cd15c1943a50aa53f171c8cf, type: 3}
-  emptyChamberAudioClip: {fileID: 8300000, guid: 8a4cdbb759dc74f42aaf8bc341cb00de,
-    type: 3}
-  weaponReloadAudioClip: {fileID: 8300000, guid: 3c5c1d4d7b9307c458890a4beb12e4ae,
-    type: 3}
---- !u!114 &114264621733124702
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1654994369129390}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 998bf4c80656e6548a756e18128a7d64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114620338191861058
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -590,12 +556,29 @@ MonoBehaviour:
   m_gunDamage: 6
   m_bulletForce: 1.1
   m_bulletScatter: 8
+  m_bulletSpeed: 400
   m_fireWeaponAudioClip: {fileID: 8300000, guid: 8602b7d5cd15c1943a50aa53f171c8cf,
     type: 3}
   m_emptyChamberAudioClip: {fileID: 8300000, guid: 8a4cdbb759dc74f42aaf8bc341cb00de,
     type: 3}
   m_weaponReloadAudioClip: {fileID: 8300000, guid: 3c5c1d4d7b9307c458890a4beb12e4ae,
     type: 3}
+--- !u!114 &114817437170105416
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1901876790112754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b662b7f94663f1f439eb26ec0d03541b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_maxRotationX: 5
+  m_maxRotationY: 5
+  m_maxVirtualAxis: 3
+  m_minVirtualAxis: 0
+  m_smoothTime: 5
 --- !u!120 &120064321279903780
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -632,7 +615,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 15}
+  - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 2
     widthMultiplier: 0.03

@@ -118,7 +118,7 @@ public class FirstPersonController : MonoBehaviour {
         // If player is NOT grounded AND NOT jumping AND previously grounded
         if (!m_CharacterController.isGrounded && !m_Jumping && m_PreviouslyGrounded)
         {
-            Debug.Log("NOT grounded AND NOT jumping AND previously grounded");
+            //Debug.Log("NOT grounded AND NOT jumping AND previously grounded");
             m_MoveVelocity.y = 0f;
         }      
 
@@ -217,7 +217,7 @@ public class FirstPersonController : MonoBehaviour {
 
     private void CheckCrouch()
     {
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.LeftControl))
         {
             if (m_moveState == MoveState.Crouching)
                 m_moveState = MoveState.Walking;

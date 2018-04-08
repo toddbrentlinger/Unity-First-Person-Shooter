@@ -155,4 +155,11 @@ public class Enemy : MonoBehaviour {
         // Add impulse force to enemy
         colliderHit.rigidbody.AddForceAtPosition(forceVector, colliderHit.point, ForceMode.Impulse);
     }
+
+    private void OnDisable()
+    {
+        // If enemy is still alive, decrement static variable enemyCount
+        if (m_isAlive)
+            enemyCount--;
+    }
 }

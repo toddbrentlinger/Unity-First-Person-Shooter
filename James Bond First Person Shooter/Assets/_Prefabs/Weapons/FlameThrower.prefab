@@ -87,6 +87,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4606844039507908}
+  - component: {fileID: 114148182492602540}
   m_Layer: 9
   m_Name: FlameThrower
   m_TagString: Weapon
@@ -315,7 +316,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1529772615085382}
   m_LocalRotation: {x: 0, y: -0.043619405, z: 0, w: 0.9990483}
-  m_LocalPosition: {x: 0.096, y: 0, z: 0.703}
+  m_LocalPosition: {x: 0.28, y: -0.22, z: 0.39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4402496715774780}
@@ -624,6 +625,22 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1236199990736622}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114148182492602540
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1529772615085382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b662b7f94663f1f439eb26ec0d03541b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_maxRotationX: 5
+  m_maxRotationY: 5
+  m_maxVirtualAxis: 3
+  m_minVirtualAxis: 0
+  m_smoothFactor: 5
 --- !u!198 &198143990870661366
 ParticleSystem:
   m_ObjectHideFlags: 1

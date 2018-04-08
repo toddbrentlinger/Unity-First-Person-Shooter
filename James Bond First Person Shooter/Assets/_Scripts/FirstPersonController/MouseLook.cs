@@ -42,7 +42,7 @@ public class MouseLook {
         // Set character and camera rotations
         character.Rotate(0, m_CharacterRot, 0);
         camera.localRotation = Quaternion.Euler(m_CameraRot, 0, 0);
-
+        /*
         // If lockCursor is true, check input & properly lock the cursor
         if (lockCursor)
         {
@@ -57,6 +57,7 @@ public class MouseLook {
                 UpdateCursorLock();
             }
         }
+        */
     }
 
     public void UpdateCursorLock()
