@@ -121,6 +121,7 @@ GameObject:
   - component: {fileID: 4034182998932656}
   - component: {fileID: 114135935247617578}
   - component: {fileID: 114462784307563260}
+  - component: {fileID: 114144582873183428}
   m_Layer: 9
   m_Name: Walther PPK
   m_TagString: Weapon
@@ -726,7 +727,6 @@ MonoBehaviour:
   m_firingMode: 0
   m_clipSize: 9
   m_fireRate: 350
-  m_reloadDurationFactor: 1
   m_weaponRange: 50
   m_gunDamage: 10
   m_bulletForce: 1.5
@@ -738,6 +738,60 @@ MonoBehaviour:
     type: 3}
   m_weaponReloadAudioClip: {fileID: 8300000, guid: fc0df4fd4363cd6468671b4eda04a309,
     type: 3}
+--- !u!114 &114144582873183428
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1707067799112552}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b4f1790218de5a4a99c6fb61dcdd51d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_useWeaponBob: 1
+  m_weaponBob:
+    m_horizontalBobRange: 0.33
+    m_verticalBobRange: 0.33
+    m_bobcurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.5
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1.5
+        value: -1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 2
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_verticaltoHorizontalRatio: 1
+  m_strideInterval: 5
+  m_runningStrideLengthen: 0.7
 --- !u!114 &114462784307563260
 MonoBehaviour:
   m_ObjectHideFlags: 1

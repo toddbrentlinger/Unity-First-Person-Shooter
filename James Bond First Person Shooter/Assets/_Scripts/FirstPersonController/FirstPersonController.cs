@@ -1,13 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /* Simplified version of StandardAssets FirstPersonController script.
  * Uses simplified MouseLook script
  * 
  * NOTES:
  * - If player is crouching and presses sprint button, player stands up before/while increasing speed 
- */ 
+ */
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(AudioSource))]

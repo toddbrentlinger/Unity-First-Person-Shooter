@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /* NOTES:
@@ -16,13 +15,18 @@ using UnityEngine;
 * - Implement reload time (change reload animation length) : animation["animName"].speed = animation["animName"].length/desiredLength;
 * - Instead of adding impulse force at single rigidbody of enemy, perhaps use spherecast to affect other connected rigidbodies with force inversely proportional to distance from impact (refer to explosion script)
 * - When aiming down sights, increase accuracy by reducing bulletScatter if any
+* - Melee with weapon. Create animation and damage if enemy is within melee range
+* - Perhaps have a WeaponController script that references camera, layermask, fpsController moveState and then pass info to active gun class functions.
+* - Change accuracy/weapon spread with fpsController speed. Running decreases accuracy and crouching increases accuracy. Aiming down sights also increases accuracy.
+* - Change WeaponBob to script rather than animation. Weapon moves direction to the same side as Player's initial movement from Idle. Adjust time of animation through script and horizontal bob limits.
+* Can I adjust horizontal limits of animation through script? Would it be easier to have the curve in the editor under each weapon bob properties.
 */
 
-public enum GunState { Idle, HipFire, Reload, MoveBob};
+public enum GunState { Idle, HipFire, Reload, MoveBob };
 
 public class Gun : MonoBehaviour {
 
-    [SerializeField] private GunState m_gunState = GunState.Idle;
+    //[SerializeField] private GunState m_gunState = GunState.Idle;
 
     // Enumeration of FiringMode to choose weapon firing mode
     private enum FiringMode { SemiAuto, Burst, FullAuto };
@@ -31,7 +35,7 @@ public class Gun : MonoBehaviour {
     [SerializeField] private int m_clipSize = 8; // Number of bullets in single clip before having to reload
     [SerializeField] [Tooltip("Rate of fire in rounds per minute (RPM)")]
     private float m_fireRate = 350f; // The rate of fire in rounds per minute (RPM)
-    [SerializeField] private float m_reloadDurationFactor = 1.0f; // multiplied to length of reload animation to adjust duration of animation
+    //[SerializeField] private float m_reloadDurationFactor = 1.0f; // multiplied to length of reload animation to adjust duration of animation
     [SerializeField] private float m_weaponRange = 50f; // Length of ray cast to test against colliders
     [SerializeField] private int m_gunDamage = 1; // How much damage is applied to target health. Interacts with Health script on target
     [SerializeField] private float m_bulletForce = 2.0f; // Force of bullet on rigidbodies
@@ -47,7 +51,7 @@ public class Gun : MonoBehaviour {
     private int m_ammoInClip; // Reference to current amount of ammo in clip
     private float m_nextShotTime = 0f; // Global time full-auto weapon can fire again between shots while button is held down
 
-    private bool m_isAiming = false;
+    //private bool m_isAiming = false;
     private bool m_isReloading = false;
 
     private Transform m_bulletSpawn; // Transform of point to spawn bullet firing effects
@@ -55,17 +59,23 @@ public class Gun : MonoBehaviour {
     private LineRenderer m_bulletTrail; // Bullet trail line renderer
     private ParticleSystem m_cartridgeEject; // Cartridge eject particle system
 
-    private FPSController m_fpsController;
+    //private FPSController m_fpsController;
     private Camera m_fpsCamera;
 
     // NOTE: Should I declare GameObject in FireWeapon() method or continue to use class property?
     private GameObject m_bulletHoleClone; // Reference to bulletHole from object pool.
 
-    private bool m_moveTarget = false; // Bool to check if target hit by raycast has rigidbody in update() and then change rigidbody in fixedupdate()
+    private bool m_moveTargetRigidbody = false; // Bool to check if target hit by raycast has rigidbody in update() and then change rigidbody in fixedupdate()
     private RaycastHit m_targetRaycastHit; // Reference to target of raycast hit with a rigidbody to be moved in FixedUpdate()
 
     private Animator m_gunAnimator; // Weapon animator
     private AudioSource m_gunAudioSource; // Weapon audioSource
+
+    // Layer mask for raycast
+    private int m_layerMask;
+
+    // FPS Controller to reference MoveState
+    private FPSController m_fpsController;
 
     private void Awake()
     {
@@ -82,8 +92,20 @@ public class Gun : MonoBehaviour {
         m_bulletTrail = transform.Find("BulletLineRenderer").GetComponent<LineRenderer>();
         m_cartridgeEject = m_bulletSpawn.Find("CartridgeEject").GetComponent<ParticleSystem>();
 
-        m_fpsController = GetComponentInParent<FPSController>();
+        //m_fpsController = GetComponentInParent<FPSController>();
         m_fpsCamera = Camera.main;
+
+        // FPS Controller to reference MoveState
+        m_fpsController = GameObject.FindGameObjectWithTag("Player").GetComponent<FPSController>();
+
+        // Bit shift the index of the layer (8) to get a bit mask
+        m_layerMask = 1 << 8;
+        // This would cast rays only against colliders in layer 8(Player).
+        // But instead we want to collide against everything except layer 8(Player). 
+        // The ~ operator does this, it inverts a bitmask.
+        m_layerMask = ~m_layerMask;
+        // NOTE: Could use IgnoreRaycast layer instead? Cannot since it's using Player layer instead
+
     }
 
     private void OnEnable()
@@ -95,8 +117,8 @@ public class Gun : MonoBehaviour {
         m_canShoot = true;
         m_isReloading = false;
     }
-	
-	private void Update ()
+
+    private void Update()
     {
         switch (m_firingMode)
         {
@@ -117,21 +139,31 @@ public class Gun : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.R) || Input.GetMouseButtonDown(2))
         {
             if (!m_isReloading)
-                StartCoroutine("ReloadWeapon");
+                StartCoroutine(ReloadWeapon());
         }
+
+        // Weapon Bob depending on fpsController.CurrentMoveState
+        if (m_fpsController.CurrentMoveState == MoveState.Walking ||
+            m_fpsController.CurrentMoveState == MoveState.Running ||
+            m_fpsController.CurrentMoveState == MoveState.Crouching)
+        {
+            m_gunAnimator.SetBool("WeaponBob", true);
+        }
+        else
+            m_gunAnimator.SetBool("WeaponBob", false);
     }
 
     private void FixedUpdate()
     {
-        // moveTarget is true if collider has rigidbody and is NOT kinematic
-        if (m_moveTarget)
+        // moveTargetRgidbody is true if collider has rigidbody and is NOT kinematic
+        if (m_moveTargetRigidbody)
         {
             // Normalized vector between hit point and bullet spawn multiplied by bulletForce factor
             Vector3 forceVec = (m_targetRaycastHit.point - m_bulletSpawn.transform.position).normalized * m_bulletForce;
             // Add impulse force to target rigidbody
             m_targetRaycastHit.rigidbody.AddForceAtPosition(forceVec, m_targetRaycastHit.point, ForceMode.Impulse);
-            // Set moveTarget bool to false
-            m_moveTarget = false;
+            // Set moveTargetRigidbody bool to false
+            m_moveTargetRigidbody = false;
         }
     }
 
@@ -171,7 +203,7 @@ public class Gun : MonoBehaviour {
         // Set Fire animation parameter on animator to true
         m_gunAnimator.SetTrigger("Fire");
 
-        StartCoroutine("FireBullet");
+        StartCoroutine(FireBullet());
 
         /*
         Vector2 screenCenterPoint = new Vector2(Screen.width / 2, Screen.height / 2);
@@ -234,7 +266,7 @@ public class Gun : MonoBehaviour {
         */
     }
 
-    IEnumerator FireBullet()
+    private IEnumerator FireBullet()
     {
         Vector2 screenCenterPoint = new Vector2(Screen.width / 2, Screen.height / 2);
         // Apply bulletScatter
@@ -243,15 +275,7 @@ public class Gun : MonoBehaviour {
         Ray ray = m_fpsCamera.ScreenPointToRay(screenCenterPoint);
         RaycastHit hit;
 
-        // Bit shift the index of the layer (8) to get a bit mask
-        int layerMask = 1 << 8;
-        // This would cast rays only against colliders in layer 8(Player).
-        // But instead we want to collide against everything except layer 8(Player). 
-        // The ~ operator does this, it inverts a bitmask.
-        layerMask = ~layerMask;
-        // NOTE: Could use IgnoreRaycast layer instead? Cannot since it's using Player layer instead
-
-        Physics.Raycast(ray, out hit, m_weaponRange, layerMask);
+        Physics.Raycast(ray, out hit, m_weaponRange, m_layerMask);
         Vector3 targetPoint;
         //float timeToHit;
         //float targetDistance;
@@ -268,8 +292,14 @@ public class Gun : MonoBehaviour {
             //targetDistance = m_weaponRange;
             //timeToHit = Time.time + m_weaponRange / m_bulletSpeed;
         }
+
+        // Bullet Trail
+
         //Debug.DrawLine(m_bulletTrail.transform.position, targetPoint, Color.green, .5f);
+
+        // Adjust bulletTrail rotation to point at targetPoint
         m_bulletTrail.transform.LookAt(targetPoint);
+
         //Vector3 currPoint = m_bulletTrail.transform.position;
         float targetDistance = (targetPoint - m_bulletTrail.transform.position).magnitude;
         float currDistance = 0;
@@ -285,6 +315,11 @@ public class Gun : MonoBehaviour {
 
             yield return null;
         }
+
+        // Reset bulletTrail
+        m_bulletTrail.SetPosition(1, Vector3.zero);
+
+        // Bullet Hole
 
         // Get bulletHoleClone from ObjectPooler
         m_bulletHoleClone = ObjectPooler.sharedInstance.GetPooledObject("BulletHole");
@@ -313,9 +348,8 @@ public class Gun : MonoBehaviour {
             // If collider gameobject has rigidbody AND is NOT kinematic, add force from bullet impact
             if (hit.rigidbody != null && !hit.rigidbody.isKinematic)
             {
-                // Set reference to 
                 m_targetRaycastHit = hit;
-                m_moveTarget = true;
+                m_moveTargetRigidbody = true;
             }
 
             // If collider is an Enemy AND isKinematic
@@ -327,13 +361,19 @@ public class Gun : MonoBehaviour {
                 // Call Damage() method on Enemy instance with forceVector and collider hit arguments
                 hit.transform.GetComponentInParent<Enemy>().Damage(m_gunDamage, forceVec, hit);
             }
-        }
 
-        // Reset bulletTrail
-        m_bulletTrail.SetPosition(1, Vector3.zero);
+            // IDamageable interface
+            IDamageable m_damageInterface = hit.transform.GetComponent<IDamageable>();
+            if (m_damageInterface != null)
+            {
+                // Normalized vector between hit point and bullet spawn multiplied by bulletForce factor
+                Vector3 hitForce = (hit.point - m_bulletSpawn.transform.position).normalized * m_bulletForce;
+                m_damageInterface.TakeDamage(hit.point, hitForce);
+            }       
+        }
     }
 
-    IEnumerator ReloadWeapon()
+    private IEnumerator ReloadWeapon()
     {
         // Set canShoot to false and isReloading to true
         m_canShoot = false;

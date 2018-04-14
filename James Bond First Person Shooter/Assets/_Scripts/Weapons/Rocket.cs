@@ -1,6 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+
+/* NOTES:
+ * - Use second collider acting like trigger as head of rocket. If OnTriggerEnter hits another collider explode rocket. First collider is used to affect rocket from other explosions and side hitting objects.
+ */
 
 public class Rocket : MonoBehaviour {
 
@@ -84,20 +86,21 @@ public class Rocket : MonoBehaviour {
 
     void OnCollisionEnter(Collision collision)
     {
-        // If collision gameObject does NOT have "Player" tag
-        if (collision.gameObject.tag != "Player")
-        {
-            // Set explosion at contact point
-            ContactPoint contact = collision.contacts[0];
-            explosionPosition = contact.point;
-            explosionRotation = Quaternion.FromToRotation(Vector3.up, contact.normal);
+        // If collision gameObject has "Player" tag, return
+        if (collision.gameObject.tag == "Player")
+            return;
 
-            // Set explodeRocket bool
-            // rocketCollided = true;
-            // rocketExplode = true;
-            // Explode
-            Explode();
-        }
+        // Set explosion at contact point
+        ContactPoint contact = collision.contacts[0];
+        explosionPosition = contact.point;
+        explosionRotation = Quaternion.FromToRotation(Vector3.up, contact.normal);
+
+        // Set explodeRocket bool
+        // rocketCollided = true;
+        // rocketExplode = true;
+
+        // Explode
+        Explode();
     }
 
     void FixedUpdate()

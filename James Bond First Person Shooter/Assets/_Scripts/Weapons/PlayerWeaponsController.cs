@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerWeaponsController : MonoBehaviour {
 
@@ -27,24 +26,27 @@ public class PlayerWeaponsController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1) && transform.childCount > 0)
-            SelectWeapon(1);
-        if (Input.GetKeyDown(KeyCode.Alpha2) && transform.childCount > 1)
-            SelectWeapon(2);
-        if (Input.GetKeyDown(KeyCode.Alpha3) && transform.childCount > 2)
-            SelectWeapon(3);
-        if (Input.GetKeyDown(KeyCode.Alpha4) && transform.childCount > 3)
-            SelectWeapon(4);
-        if (Input.GetKeyDown(KeyCode.Alpha5) && transform.childCount > 4)
-            SelectWeapon(5);
-        if (Input.GetKeyDown(KeyCode.Alpha6) && transform.childCount > 5)
-            SelectWeapon(6);
-        if (Input.GetKeyDown(KeyCode.Alpha7) && transform.childCount > 6)
-            SelectWeapon(7);
-        if (Input.GetKeyDown(KeyCode.Alpha8) && transform.childCount > 7)
-            SelectWeapon(8);
-        if (Input.GetKeyDown(KeyCode.Alpha9) && transform.childCount > 8)
-            SelectWeapon(9);
+        if (Input.anyKeyDown)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1) && transform.childCount > 0)
+                SelectWeapon(1);
+            if (Input.GetKeyDown(KeyCode.Alpha2) && transform.childCount > 1)
+                SelectWeapon(2);
+            if (Input.GetKeyDown(KeyCode.Alpha3) && transform.childCount > 2)
+                SelectWeapon(3);
+            if (Input.GetKeyDown(KeyCode.Alpha4) && transform.childCount > 3)
+                SelectWeapon(4);
+            if (Input.GetKeyDown(KeyCode.Alpha5) && transform.childCount > 4)
+                SelectWeapon(5);
+            if (Input.GetKeyDown(KeyCode.Alpha6) && transform.childCount > 5)
+                SelectWeapon(6);
+            if (Input.GetKeyDown(KeyCode.Alpha7) && transform.childCount > 6)
+                SelectWeapon(7);
+            if (Input.GetKeyDown(KeyCode.Alpha8) && transform.childCount > 7)
+                SelectWeapon(8);
+            if (Input.GetKeyDown(KeyCode.Alpha9) && transform.childCount > 8)
+                SelectWeapon(9);
+        }
 
         if (Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
@@ -53,8 +55,7 @@ public class PlayerWeaponsController : MonoBehaviour {
             else
                 SelectWeapon(currentWeapon - 1);
         }
-
-        if (Input.GetAxis("Mouse ScrollWheel") < 0f)
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0f)
         {
             if (currentWeapon >= transform.childCount)
                 SelectWeapon(0);

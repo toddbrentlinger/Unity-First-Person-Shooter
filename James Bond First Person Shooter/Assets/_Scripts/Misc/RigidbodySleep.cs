@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class RigidbodySleep : MonoBehaviour {
 
@@ -15,10 +13,5 @@ public class RigidbodySleep : MonoBehaviour {
         {
             rb.Sleep();
         }	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
 	}
 }

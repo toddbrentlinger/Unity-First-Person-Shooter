@@ -5,11 +5,11 @@ public class PauseMenuScreen : MonoBehaviour {
 
     public static bool gameIsPaused = false;
     [SerializeField] private GameObject m_pauseMenuUI;
-    private FPSWalkerCustom m_playerController;
+    private FPSController m_playerController;
 
     private void Awake()
     {
-        m_playerController = GameObject.FindWithTag("Player").GetComponent<FPSWalkerCustom>();
+        m_playerController = GameObject.FindWithTag("Player").GetComponent<FPSController>();
     }
 	
 	// Update is called once per frame
@@ -18,16 +18,10 @@ public class PauseMenuScreen : MonoBehaviour {
 	    if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (gameIsPaused)
-            {
                 Resume();
-            }
-                
             else
-            {
                 Pause();
-            }
-                
-        }	
+        }
 	}
 
     public void Resume()

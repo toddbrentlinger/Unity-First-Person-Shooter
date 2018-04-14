@@ -9,14 +9,11 @@ EditorBuildSettings:
     path: Assets/_Scenes/StartMenuTextMesh.unity
     guid: 7578b48397f915e43924a9e8c8ab112f
   - enabled: 1
-    path: Assets/_Scenes/Level04.unity
-    guid: b46c7d37be5da0c4e8346be6b2a3a671
+    path: Assets/_Scenes/Level02-3.unity
+    guid: 9087e9fc1cad35e45bc41ee906ebe804
   - enabled: 1
     path: Assets/_Scenes/Level03.unity
     guid: 29fd698b8461ad44184b7da757c89a52
-  - enabled: 1
-    path: Assets/_Scenes/Level02.unity
-    guid: 9f375dbc16774c2488ac3588dd61c567
   - enabled: 1
     path: Assets/_Scenes/Level01.unity
     guid: e0a03f8e7c0aa6046af0ea541f8ddbf2

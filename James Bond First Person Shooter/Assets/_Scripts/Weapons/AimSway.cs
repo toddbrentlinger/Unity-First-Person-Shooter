@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AimSway : MonoBehaviour {
 
@@ -13,6 +11,7 @@ public class AimSway : MonoBehaviour {
     //private Vector3 m_originalWeaponPosition;
     //private Quaternion m_originalWeaponRotation;
     private Quaternion m_originalWeaponLocalRotation;
+    private Quaternion m_targetRotation;
     //private Vector3 m_originalRotationEuler;
     //private Vector3 m_originalLocalRotationEuler;
     //private Quaternion m_currentWeaponRotation;
@@ -53,12 +52,12 @@ public class AimSway : MonoBehaviour {
         else if (vertical < 0)
             verticalFactor = -Mathf.InverseLerp(m_minVirtualAxis, m_maxVirtualAxis, -vertical);
 
-        Quaternion targetRotation = m_originalWeaponLocalRotation * Quaternion.Euler(verticalFactor * m_maxRotationY, horizontalFactor * m_maxRotationX, 0);
+        m_targetRotation = m_originalWeaponLocalRotation * Quaternion.Euler(verticalFactor * m_maxRotationY, horizontalFactor * m_maxRotationX, 0);
 
         //transform.localRotation = m_originalWeaponRotation * Quaternion.Euler(verticalFactor * m_maxRotationY, horizontalFactor * m_maxRotationX, 0);
         //transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation, Time.deltaTime * m_smoothFactor);
         //transform.localRotation = Quaternion.RotateTowards(transform.localRotation, targetRotation, Time.deltaTime * m_smoothFactor);
-        transform.localRotation = Quaternion.Lerp(transform.localRotation, targetRotation, Time.deltaTime * m_smoothTime);
+        transform.localRotation = Quaternion.Lerp(transform.localRotation, m_targetRotation, Time.deltaTime * m_smoothTime);
 
         //Debug.Log("Horiz: " + horizontal + "(" + horizontalFactor + ") - Vert: " + vertical + "(" + verticalFactor + ") - LocalRotation: " + m_originalWeaponLocalRotation.eulerAngles + " - TargetRotation: " + targetRotation.eulerAngles);
         //Debug.Log("SlerpT01: " + Time.deltaTime * m_smoothFactor + " - Horizontal: " + (horizontalFactor * m_maxRotationX) + " - Vertical: "+ (verticalFactor * m_maxRotationY));

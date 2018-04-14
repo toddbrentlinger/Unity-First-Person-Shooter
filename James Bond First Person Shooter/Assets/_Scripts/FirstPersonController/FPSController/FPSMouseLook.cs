@@ -3,6 +3,7 @@
 /* NOTES:
  * - Transform.Rotate for camera instead of directly changing transform.localRotation
  * - Create private references to camera.transform and character.transform instead of passing references each time to LookRotation()
+ * - Use Slerp instead of Lerp in smoothRotation
  */
 
 [System.Serializable]

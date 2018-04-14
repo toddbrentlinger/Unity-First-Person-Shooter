@@ -309,7 +309,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1901876790112754}
   m_LocalRotation: {x: -0.009597652, y: -0.018062342, z: -0.00017339233, w: 0.9997908}
-  m_LocalPosition: {x: 0.52, y: -0.4, z: 1.16}
+  m_LocalPosition: {x: 0.52, y: -0.39999998, z: 1.1599998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4252874858545902}
@@ -551,7 +551,6 @@ MonoBehaviour:
   m_firingMode: 2
   m_clipSize: 30
   m_fireRate: 600
-  m_reloadDurationFactor: 1
   m_weaponRange: 50
   m_gunDamage: 6
   m_bulletForce: 1.1
