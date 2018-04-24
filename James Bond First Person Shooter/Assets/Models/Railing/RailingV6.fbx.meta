@@ -1,0 +1,163 @@
+fileFormatVersion: 2
+guid: 59cd32e00b9358141a64e5febd00cdc9
+timeCreated: 1524456691
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Camera
+    100002: Floor
+    100004: HandRailCornerIn01
+    100006: HandRailCornerIn01_Collider
+    100008: HandRailCornerOut01
+    100010: HandRailCornerOut01_Collider
+    100012: HandRailEndLeft01
+    100014: HandRailEndLeft01_Collider
+    100016: HandRailEndRight01
+    100018: HandRailEndRight01_Collider
+    100020: HandRailMid01
+    100022: HandRailMid01_Collider
+    100024: Lamp
+    100026: //RootNode
+    400000: Camera
+    400002: Floor
+    400004: HandRailCornerIn01
+    400006: HandRailCornerIn01_Collider
+    400008: HandRailCornerOut01
+    400010: HandRailCornerOut01_Collider
+    400012: HandRailEndLeft01
+    400014: HandRailEndLeft01_Collider
+    400016: HandRailEndRight01
+    400018: HandRailEndRight01_Collider
+    400020: HandRailMid01
+    400022: HandRailMid01_Collider
+    400024: Lamp
+    400026: //RootNode
+    2000000: Camera
+    2100000: No Name
+    2100002: BrushedMetal
+    2300000: Floor
+    2300002: HandRailCornerIn01
+    2300004: HandRailCornerIn01_Collider
+    2300006: HandRailCornerOut01
+    2300008: HandRailCornerOut01_Collider
+    2300010: HandRailEndLeft01
+    2300012: HandRailEndLeft01_Collider
+    2300014: HandRailEndRight01
+    2300016: HandRailEndRight01_Collider
+    2300018: HandRailMid01
+    2300020: HandRailMid01_Collider
+    3300000: Floor
+    3300002: HandRailCornerIn01
+    3300004: HandRailCornerIn01_Collider
+    3300006: HandRailCornerOut01
+    3300008: HandRailCornerOut01_Collider
+    3300010: HandRailEndLeft01
+    3300012: HandRailEndLeft01_Collider
+    3300014: HandRailEndRight01
+    3300016: HandRailEndRight01_Collider
+    3300018: HandRailMid01
+    3300020: HandRailMid01_Collider
+    4300000: HandRailCornerOut01_Collider
+    4300002: HandRailCornerIn01_Collider
+    4300004: HandRailMid01_Collider
+    4300006: HandRailEndRight01_Collider
+    4300008: HandRailEndLeft01_Collider
+    4300010: HandRailEndRight01
+    4300012: HandRailCornerOut01
+    4300014: Floor
+    4300016: HandRailCornerIn01
+    4300018: HandRailMid01
+    4300020: HandRailEndLeft01
+    6400000: Floor
+    6400002: HandRailCornerIn01
+    6400004: HandRailCornerIn01_Collider
+    6400006: HandRailCornerOut01
+    6400008: HandRailCornerOut01_Collider
+    6400010: HandRailEndLeft01
+    6400012: HandRailEndLeft01_Collider
+    6400014: HandRailEndRight01
+    6400016: HandRailEndRight01_Collider
+    6400018: HandRailMid01
+    6400020: HandRailMid01_Collider
+    10800000: Lamp
+  externalObjects: {}
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

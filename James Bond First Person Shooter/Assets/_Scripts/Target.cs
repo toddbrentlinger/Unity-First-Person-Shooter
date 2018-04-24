@@ -28,7 +28,7 @@ public class Target : MonoBehaviour, IDamageable
                 m_isSpinning = false;
             }
 
-            Debug.Log("Angular Speed: " + m_rigidbody.angularVelocity.magnitude);
+            //Debug.Log("Angular Speed: " + m_rigidbody.angularVelocity.magnitude);
         }
     }
 
@@ -42,8 +42,8 @@ public class Target : MonoBehaviour, IDamageable
         }
 	}
 
-    // IDamageable interface members
-    public void TakeDamage(Vector3 hitPoint, Vector3 hitForce)
+    // IDamageable interface TakeDamage()
+    public void TakeDamage(Vector3 hitPoint, Vector3 hitForce, int damage, Rigidbody rigidbodyHit)
     {
         // If NOT spinning
         if (!m_isSpinning)

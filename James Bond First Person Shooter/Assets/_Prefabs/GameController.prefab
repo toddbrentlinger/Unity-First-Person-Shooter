@@ -53,14 +53,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemsToPool:
-  - objectToPool: {fileID: 1252277028824882, guid: 8e634c63b2b3d1648b109b81dfb71d84,
+  - groupName: BulletHole
+    objectToPool: {fileID: 1975127812795346, guid: 8e634c63b2b3d1648b109b81dfb71d84,
       type: 2}
     amountToPool: 100
     shouldExpand: 0
-  - objectToPool: {fileID: 1068628151473594, guid: 298490350dab161449e12e529c8693e9,
+  - groupName: Rocket
+    objectToPool: {fileID: 1068628151473594, guid: 298490350dab161449e12e529c8693e9,
       type: 2}
     amountToPool: 10
     shouldExpand: 1
+  - groupName: BulletImpactMetalEffect
+    objectToPool: {fileID: 1000010355441670, guid: ce6822afb24d7ca4ab48ff482f5b51d1,
+      type: 2}
+    amountToPool: 25
+    shouldExpand: 0
+  - groupName: BulletImpactStoneEffect
+    objectToPool: {fileID: 1000010844420130, guid: a96d992c92fc88a48bd5189a8a88ba55,
+      type: 2}
+    amountToPool: 25
+    shouldExpand: 0
+  - groupName: BulletImpactWoodEffect
+    objectToPool: {fileID: 1000011190285628, guid: 92226396d8c4bb446ab4ed5759b6aff2,
+      type: 2}
+    amountToPool: 25
+    shouldExpand: 0
+  - groupName: BulletImpactFleshSmallEffect
+    objectToPool: {fileID: 1000010191825552, guid: 8569768dc6d2911448338aeb621b0fe4,
+      type: 2}
+    amountToPool: 25
+    shouldExpand: 0
 --- !u!114 &114930085201306082
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 /* NOTES:
@@ -7,11 +6,13 @@ using UnityEngine;
  * - Use List.Find(x => x.isActive()) to find first occurrence where pooledObject is active
  *   or loop through each index stopping at first occurrence where object is active and then
  *   stopping at first occurence where object is inactive. Simulate queue using list. 
- */ 
+ */
 
 [System.Serializable]
 public class ObjectPoolItem
 {
+    [Tooltip("Item name")]
+    public string groupName;
     [Tooltip("The prefab to be pooled.")]
     public GameObject objectToPool;
     [Tooltip("The number of objects to pool. Will grow if shouldExpand is true.")]
@@ -99,18 +100,19 @@ public class ObjectPooler : MonoBehaviour {
                 // Deactivate object
                 obj.SetActive(false);
 
-                // Add object to singlePooledObjects in item
+                // Add object to singlePooledObjects List variable in item
                 item.AddPooledObject(obj);
             }
         }
     }
 
     // Public method to get pooled object given object tag
-    public GameObject GetPooledObject(string tag)
+    public GameObject GetPooledObject(string name)
     {
         foreach (ObjectPoolItem item in itemsToPool)
         {
-            if (item.objectToPool.tag == tag)
+            //if (item.objectToPool.tag == name)
+            if (item.groupName == name)
             {
                 GameObject obj = item.GetPooledObject();
 
@@ -144,7 +146,8 @@ public class ObjectPooler : MonoBehaviour {
         return null;
     }
 
-    /*
+    /* HOW TO USE:
+     * 
      * Replace Instantiate with:
      * GameObject enemy1 = ObjectPooler.SharedInstance.GetPooledObject("EnemyShip01");
      * if (enemey1 != null) {

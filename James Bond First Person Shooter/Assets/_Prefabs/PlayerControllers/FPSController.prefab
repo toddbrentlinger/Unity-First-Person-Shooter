@@ -479,7 +479,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_moveState: 0
-  m_playerControl: 1
+  playerControl: 1
   m_moveBackwardFactor: 0.8
   m_moveSideFactor: 0.8
   m_antiBumpFactor: 0.75
@@ -487,7 +487,9 @@ MonoBehaviour:
   m_airAssist: 0
   m_airSpeed: 2
   m_walkSpeed: 5
+  m_stepInterval: 5
   m_runSpeed: 8
+  m_runstepLenghten: 0.7
   m_jumpSpeed: 7
   m_framesGroundedBetweenJumps: 1
   m_fallingDamageThreshold: 10
@@ -507,9 +509,13 @@ MonoBehaviour:
     lockCursor: 1
   m_gravity: 20
   m_pushPower: 0.1
-  m_footstepSounds: []
-  m_jumpSound: {fileID: 0}
-  m_landSound: {fileID: 0}
+  m_footstepSounds:
+  - {fileID: 8300000, guid: 42e65e088b3f4374e851b8dbd38f3df9, type: 3}
+  - {fileID: 8300000, guid: 8bc94ec6ed537e743b481638bdcd503d, type: 3}
+  - {fileID: 8300000, guid: 5a9383dda6cabc047b7a297602e93eb4, type: 3}
+  - {fileID: 8300000, guid: e9714160ce34f2b4ab63ff8c27bd68e1, type: 3}
+  m_jumpSound: {fileID: 8300000, guid: 5897aeed9b676024fbb8c694b421a861, type: 3}
+  m_landSound: {fileID: 8300000, guid: 3b09d59f4499d45428baa7a21e954296, type: 3}
 --- !u!114 &114471490442262022
 MonoBehaviour:
   m_ObjectHideFlags: 1

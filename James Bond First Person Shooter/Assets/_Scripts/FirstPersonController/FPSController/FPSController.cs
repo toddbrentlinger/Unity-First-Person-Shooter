@@ -46,6 +46,7 @@ public class FPSController : MonoBehaviour {
     */
     [Header("General")]
     [SerializeField] private MoveState m_moveState = MoveState.Idle;
+    [SerializeField] private bool m_showStatsGUI = false;
     public bool playerControl = true;
 
     [Header("Movement")]
@@ -509,14 +510,25 @@ public class FPSController : MonoBehaviour {
 
     private void OnGUI()
     {
+        if (!m_showStatsGUI)
+            return;
+
+        float xInput = Input.GetAxis("Mouse X");
+        float yInput = Input.GetAxis("Mouse Y");
+
+        float yRot = xInput * m_mouseLook.xSensitivity;
+        float xRot = yInput * m_mouseLook.ySensitivity;
+
         string text =
             "MoveState: " + m_moveState +
             "\nGrounded: " + m_grounded +
             "\nSpeed: " + m_speed +
             "\nCCSpeed: " + m_characterController.velocity.magnitude +
-            "\nInput: " + m_input +
+            "\nInput-Move: " + m_input +
             "\nDesiredMove: " + transform.InverseTransformDirection(m_moveDirection) + 
-            "\nMoveVelocity: " + transform.InverseTransformDirection(m_moveVelocity);
+            "\nMoveVelocity: " + transform.InverseTransformDirection(m_moveVelocity) + 
+            "\nCameraInput: " + new Vector2(xInput, yInput) + 
+            "\nCameraRotation: " + new Vector2(yRot, xRot);
 
         GUI.contentColor = Color.white;
         GUIStyle myGUIStyle = new GUIStyle();

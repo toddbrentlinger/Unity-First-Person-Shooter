@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy : MonoBehaviour {
-
+public class Enemy : MonoBehaviour, IDamageable
+{
     /* NOTES:
      * X If bullet hits enemy, they fall back at the same angle the bullet hits from
      * - Explosion affects enemy by damaging them, killing them if too close, and throwing their body in relation to the explosion 
@@ -67,7 +67,7 @@ public class Enemy : MonoBehaviour {
             // Disabling auto-braking allows for continuous movement
             // between points (ie, the agent doesn't slow down as it
             // approaches a destination point).
-            m_enemyNavMeshAgent.autoBraking = false;
+            //m_enemyNavMeshAgent.autoBraking = false;
 
             GoToNextPatrolPoint();
         }
@@ -112,7 +112,55 @@ public class Enemy : MonoBehaviour {
         }
     }
 
-    // Damage enemy. Called from outside script in FixedUpdate
+    // IDamageable interface TakeDamage()
+    public void TakeDamage(Vector3 hitPoint, Vector3 hitForce, int damage, Rigidbody rigidbodyHit)
+    {
+        // Return if enemy is NOT alive
+        if (!m_isAlive)
+            return;
+
+        // Decrease currentHealth by damage
+        currentHealth -= damage;
+
+        // If new value of currentHealth is above zero, return
+        if (currentHealth > 0)
+            return;
+
+        // Enemy currentHealth is zero or less
+
+        // Set isAlive to false
+        m_isAlive = false;
+
+        // Decrement static enemyCount and update GUI
+        enemyCount--;
+        CanvasUI.sharedInstance.UpdateEnemyCount();
+
+        // Disable NavMeshAgent
+        if (m_enemyNavMeshAgent)
+            m_enemyNavMeshAgent.enabled = false;
+
+        // Set rigidbody to NOT isKinematic
+        if (m_enemyRigidbody)
+            m_enemyRigidbody.isKinematic = false;
+        if (m_limbRigidbodies.Length > 0)
+        {
+            foreach (Rigidbody rb in m_limbRigidbodies)
+            {
+                rb.isKinematic = false;
+                if (m_enemyAnimator)
+                    m_enemyAnimator.enabled = false;
+            }
+        }
+
+        // Add impulse force to enemy
+        if (m_limbRigidbodies.Length > 1)
+            rigidbodyHit.AddForceAtPosition(hitForce * 3f, hitPoint, ForceMode.Impulse);
+        else
+            rigidbodyHit.AddForceAtPosition(hitForce, hitPoint, ForceMode.Impulse);
+    }
+
+    /*
+    // Damage enemy. Called from outside script Gun in FixedUpdate
     public void Damage(int damageAmount, Vector3 forceVector, RaycastHit colliderHit)
     {
         // Return if enemy is NOT alive
@@ -157,36 +205,8 @@ public class Enemy : MonoBehaviour {
             colliderHit.rigidbody.AddForceAtPosition(forceVector * 3f, colliderHit.point, ForceMode.Impulse);
         else
             colliderHit.rigidbody.AddForceAtPosition(forceVector, colliderHit.point, ForceMode.Impulse);
-
-        /*
-        if (m_limbRigidbodies.Length > 1)
-        {
-            Debug.Log("Exposive Force");
-            // Add explosion force at collider hit point
-            float forceRadius = 1f;
-            float force = 100f;
-            Vector3 forcePos = colliderHit.point; ;
-            Collider[] colliders = Physics.OverlapSphere(forcePos, forceRadius);
-            foreach (Collider hit in colliders)
-            {
-                if (!hit.transform.IsChildOf(transform))
-                    continue;
-
-                Rigidbody rb = hit.GetComponent<Rigidbody>();
-
-                if (rb != null)
-                    rb.AddExplosionForce(force, forcePos, forceRadius, 3.0f);
-            }
-        }
-        // Add impulse force to enemy
-        else
-        {
-            Debug.Log("Simple Force");
-            colliderHit.rigidbody.AddForceAtPosition(forceVector, colliderHit.point, ForceMode.Impulse);
-        }
-        */
     }
-
+    */
     private void OnDisable()
     {
         // If enemy is still alive, decrement static variable enemyCount

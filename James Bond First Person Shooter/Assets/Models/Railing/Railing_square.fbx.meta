@@ -1,0 +1,146 @@
+fileFormatVersion: 2
+guid: 4e5bca16d9e233447a19d84e6d20dce9
+timeCreated: 1524261033
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Floor
+    100002: HandRailCornerIn02
+    100004: HandRailCornerIn02_Collider
+    100006: HandRailCornerOut02
+    100008: HandRailCornerOut02_Collider
+    100010: HandRailEndLeft02
+    100012: HandRailEndLeft02_Collider
+    100014: HandRailEndRight02
+    100016: HandRailEndRight02_Collider
+    100018: HandRailMid02
+    100020: HandRailMid02_Collider
+    100022: //RootNode
+    400000: Floor
+    400002: HandRailCornerIn02
+    400004: HandRailCornerIn02_Collider
+    400006: HandRailCornerOut02
+    400008: HandRailCornerOut02_Collider
+    400010: HandRailEndLeft02
+    400012: HandRailEndLeft02_Collider
+    400014: HandRailEndRight02
+    400016: HandRailEndRight02_Collider
+    400018: HandRailMid02
+    400020: HandRailMid02_Collider
+    400022: //RootNode
+    2100000: BrushedMetal
+    2100002: No Name
+    2300000: Floor
+    2300002: HandRailCornerIn02
+    2300004: HandRailCornerIn02_Collider
+    2300006: HandRailCornerOut02
+    2300008: HandRailCornerOut02_Collider
+    2300010: HandRailEndLeft02
+    2300012: HandRailEndLeft02_Collider
+    2300014: HandRailEndRight02
+    2300016: HandRailEndRight02_Collider
+    2300018: HandRailMid02
+    2300020: HandRailMid02_Collider
+    3300000: Floor
+    3300002: HandRailCornerIn02
+    3300004: HandRailCornerIn02_Collider
+    3300006: HandRailCornerOut02
+    3300008: HandRailCornerOut02_Collider
+    3300010: HandRailEndLeft02
+    3300012: HandRailEndLeft02_Collider
+    3300014: HandRailEndRight02
+    3300016: HandRailEndRight02_Collider
+    3300018: HandRailMid02
+    3300020: HandRailMid02_Collider
+    4300000: HandRailEndRight02_Collider
+    4300002: HandRailCornerOut02_Collider
+    4300004: HandRailCornerIn02_Collider
+    4300006: HandRailMid02_Collider
+    4300008: HandRailEndLeft02_Collider
+    4300010: HandRailEndRight02
+    4300012: HandRailCornerOut02
+    4300014: HandRailCornerIn02
+    4300016: HandRailMid02
+    4300018: HandRailEndLeft02
+    4300020: Floor
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

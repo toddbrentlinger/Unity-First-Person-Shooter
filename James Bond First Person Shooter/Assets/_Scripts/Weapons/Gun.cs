@@ -20,6 +20,8 @@ using UnityEngine;
 * - Change accuracy/weapon spread with fpsController speed. Running decreases accuracy and crouching increases accuracy. Aiming down sights also increases accuracy.
 * - Change WeaponBob to script rather than animation. Weapon moves direction to the same side as Player's initial movement from Idle. Adjust time of animation through script and horizontal bob limits.
 * Can I adjust horizontal limits of animation through script? Would it be easier to have the curve in the editor under each weapon bob properties.
+* - Use script to move weapon to aim down sights. Fire animation will play the same since script moves parent of weapon model. 
+* - BulletLineRenderer: set first position in world space location so bullet line will stay in line wherever bullet originally fired from
 */
 
 public enum GunState { Idle, HipFire, Reload, MoveBob };
@@ -74,8 +76,11 @@ public class Gun : MonoBehaviour {
     // Layer mask for raycast
     private int m_layerMask;
 
-    // FPS Controller to reference MoveState
-    private FPSController m_fpsController;
+    // FPS Controller to reference MoveState for weaponBob
+    //private FPSController m_fpsController;
+
+    // BulletHoleController
+    private BulletHoleController m_bulletHoleController = new BulletHoleController();
 
     private void Awake()
     {
@@ -95,8 +100,8 @@ public class Gun : MonoBehaviour {
         //m_fpsController = GetComponentInParent<FPSController>();
         m_fpsCamera = Camera.main;
 
-        // FPS Controller to reference MoveState
-        m_fpsController = GameObject.FindGameObjectWithTag("Player").GetComponent<FPSController>();
+        // FPS Controller to reference MoveState for weaponBob
+        //m_fpsController = GameObject.FindGameObjectWithTag("Player").GetComponent<FPSController>();
 
         // Bit shift the index of the layer (8) to get a bit mask
         m_layerMask = 1 << 8;
@@ -105,7 +110,6 @@ public class Gun : MonoBehaviour {
         // The ~ operator does this, it inverts a bitmask.
         m_layerMask = ~m_layerMask;
         // NOTE: Could use IgnoreRaycast layer instead? Cannot since it's using Player layer instead
-
     }
 
     private void OnEnable()
@@ -141,7 +145,7 @@ public class Gun : MonoBehaviour {
             if (!m_isReloading)
                 StartCoroutine(ReloadWeapon());
         }
-
+        /*
         // Weapon Bob depending on fpsController.CurrentMoveState
         if (m_fpsController.CurrentMoveState == MoveState.Walking ||
             m_fpsController.CurrentMoveState == MoveState.Running ||
@@ -151,6 +155,7 @@ public class Gun : MonoBehaviour {
         }
         else
             m_gunAnimator.SetBool("WeaponBob", false);
+        */
     }
 
     private void FixedUpdate()
@@ -204,66 +209,6 @@ public class Gun : MonoBehaviour {
         m_gunAnimator.SetTrigger("Fire");
 
         StartCoroutine(FireBullet());
-
-        /*
-        Vector2 screenCenterPoint = new Vector2(Screen.width / 2, Screen.height / 2);
-        // Apply bulletScatter
-        if (m_bulletScatter != 0)
-            screenCenterPoint += Random.insideUnitCircle * m_bulletScatter;
-        Ray ray = m_fpsCamera.ScreenPointToRay(screenCenterPoint);
-        RaycastHit hit;
-
-        // Bit shift the index of the layer (8) to get a bit mask
-        int layerMask = 1 << 8;
-        // This would cast rays only against colliders in layer 8(Player).
-        // But instead we want to collide against everything except layer 8(Player). 
-        // The ~ operator does this, it inverts a bitmask.
-        layerMask = ~layerMask;
-        // NOTE: Could use IgnoreRaycast layer instead? Cannot since it's using Player layer instead
-
-        // Get bulletHoleClone from ObjectPooler
-        m_bulletHoleClone = ObjectPooler.sharedInstance.GetPooledObject("BulletHole");
-
-        // If there is a bulletHoleClone and physics raycast hits a collider
-        if (m_bulletHoleClone != null && Physics.Raycast(ray, out hit, m_weaponRange, layerMask))
-        {
-            // Get bulletHolePosition a short distance above the hit point
-            // Vector3 bulletHolePosition = hit.point + hit.normal * .01f;
-
-            // Get bulletHoleRotation by randomly spinning bulletHole and orient in line with hit point normal
-            // Quaternion randRot = Quaternion.Euler(Vector3.forward * Random.Range(0, 360));
-            // Quaternion bulletHoleRotation = Quaternion.FromToRotation(-Vector3.forward, hit.normal) * randRot;
-
-            // Set bulletHolePosition a short distance above the hit point
-            m_bulletHoleClone.transform.position = hit.point + hit.normal * .01f;
-            // Set bulletHoleRotation by randomly spinning bulletHole and orient in line with hit point normal
-            m_bulletHoleClone.transform.rotation = Quaternion.FromToRotation(-Vector3.forward, hit.normal)
-                * Quaternion.Euler(Vector3.forward * Random.Range(0, 360));
-
-            // Set bullet hole parent to object that raycasthit hits
-            m_bulletHoleClone.transform.SetParent(hit.transform);
-            // Set bullet hole active
-            m_bulletHoleClone.SetActive(true);
-
-            // If collider gameobject has rigidbody AND is NOT kinematic, add force from bullet impact
-            if (hit.rigidbody != null && !hit.rigidbody.isKinematic)
-            {
-                // Set reference to 
-                m_targetRaycastHit = hit;
-                m_moveTarget = true;
-            }
-
-            // If collider is an Enemy AND isKinematic
-            if (hit.transform.tag == "Enemy" && hit.rigidbody.isKinematic)
-            {
-                // Normalized vector between hit point and bullet spawn multiplied by bulletForce factor
-                Vector3 forceVec = (hit.point - m_bulletSpawn.transform.position).normalized * m_bulletForce;
-
-                // Call Damage() method on Enemy instance with forceVector and collider hit arguments
-                hit.transform.GetComponentInParent<Enemy>().Damage(m_gunDamage, forceVec, hit);
-            }
-        }
-        */
     }
 
     private IEnumerator FireBullet()
@@ -293,7 +238,13 @@ public class Gun : MonoBehaviour {
             //timeToHit = Time.time + m_weaponRange / m_bulletSpeed;
         }
 
+        // Set Bullet Position/Rotation(LookAt) from ObjectPool at m_bulletSpawn.position
+        // Set Bullet Active
+        // Call FireBullet() from Bullet
+
+        // ---------------------------------------------------------------------------- //
         // Bullet Trail
+        // ---------------------------------------------------------------------------- //
 
         //Debug.DrawLine(m_bulletTrail.transform.position, targetPoint, Color.green, .5f);
 
@@ -319,25 +270,32 @@ public class Gun : MonoBehaviour {
         // Reset bulletTrail
         m_bulletTrail.SetPosition(1, Vector3.zero);
 
+        // ---------------------------------------------------------------------------- //
         // Bullet Hole
+        // ---------------------------------------------------------------------------- //
+
+        SetBulletHole(hit);
+    }
+
+    private void SetBulletHole(RaycastHit hit)
+    {
+        // Return if PhysicsRaycast does NOT hit a collider, bullet does NOT hit anything
+        if (hit.collider == null)
+            return;
 
         // Get bulletHoleClone from ObjectPooler
-        m_bulletHoleClone = ObjectPooler.sharedInstance.GetPooledObject("BulletHole");
+        //m_bulletHoleClone = ObjectPooler.sharedInstance.GetPooledObject("BulletHole");
+        m_bulletHoleClone = m_bulletHoleController.GetBulletHole(hit.collider.material);
 
-        // If there is a bulletHoleClone and physics raycast hits a collider
-        if (m_bulletHoleClone != null && hit.collider != null)
+        if (m_bulletHoleClone != null)
         {
             // Get bulletHolePosition a short distance above the hit point
             // Vector3 bulletHolePosition = hit.point + hit.normal * .01f;
 
-            // Get bulletHoleRotation by randomly spinning bulletHole and orient in line with hit point normal
-            // Quaternion randRot = Quaternion.Euler(Vector3.forward * Random.Range(0, 360));
-            // Quaternion bulletHoleRotation = Quaternion.FromToRotation(-Vector3.forward, hit.normal) * randRot;
-
             // Set bulletHolePosition a short distance above the hit point
             m_bulletHoleClone.transform.position = hit.point + hit.normal * .01f;
             // Set bulletHoleRotation by randomly spinning bulletHole and orient in line with hit point normal
-            m_bulletHoleClone.transform.rotation = Quaternion.FromToRotation(-Vector3.forward, hit.normal)
+            m_bulletHoleClone.transform.rotation = Quaternion.FromToRotation(Vector3.forward, hit.normal)
                 * Quaternion.Euler(Vector3.forward * Random.Range(0, 360));
 
             // Set bullet hole parent to object that raycasthit hits
@@ -352,6 +310,17 @@ public class Gun : MonoBehaviour {
                 m_moveTargetRigidbody = true;
             }
 
+            // IDamageable interface
+            IDamageable m_damageInterface = hit.transform.GetComponentInParent<IDamageable>();
+            if (m_damageInterface != null)
+            {
+                // Normalized vector between hit point and bullet spawn multiplied by bulletForce factor
+                Vector3 hitForce = (hit.point - m_bulletSpawn.transform.position).normalized * m_bulletForce;
+
+                // Call TakeDamage from IDamageable interface
+                m_damageInterface.TakeDamage(hit.point, hitForce, m_gunDamage, hit.rigidbody);
+            }
+            /*
             // If collider is an Enemy AND isKinematic
             if (hit.transform.tag == "Enemy" && hit.rigidbody.isKinematic)
             {
@@ -361,15 +330,7 @@ public class Gun : MonoBehaviour {
                 // Call Damage() method on Enemy instance with forceVector and collider hit arguments
                 hit.transform.GetComponentInParent<Enemy>().Damage(m_gunDamage, forceVec, hit);
             }
-
-            // IDamageable interface
-            IDamageable m_damageInterface = hit.transform.GetComponent<IDamageable>();
-            if (m_damageInterface != null)
-            {
-                // Normalized vector between hit point and bullet spawn multiplied by bulletForce factor
-                Vector3 hitForce = (hit.point - m_bulletSpawn.transform.position).normalized * m_bulletForce;
-                m_damageInterface.TakeDamage(hit.point, hitForce);
-            }       
+            */
         }
     }
 
