@@ -75,7 +75,8 @@ public class FPSController : MonoBehaviour {
     [SerializeField] [Range(0f, 1f)] private float m_runstepLenghten = .7f; // for step audio and weaponBob
 
     [Header("Jumping")]
-    [SerializeField] private float m_jumpSpeed = 7f;
+    [SerializeField] private float m_jumpVerticalSpeed = 7f;
+    [SerializeField] private float m_jumpHorizontalSpeed = 2f;
     //Player must be grounded for at least this many physics frames before being able to jump again; set to 0 to allow bunny hopping
     [SerializeField] private float m_framesGroundedBetweenJumps = 1;
     private float m_jumpFrameCounter;
@@ -238,7 +239,10 @@ public class FPSController : MonoBehaviour {
                                m_characterController.height / 2f, Physics.AllLayers, QueryTriggerInteraction.Ignore);
             // Get normalized Vector3 projected on plane of surface being touched
             m_moveDirection = Vector3.ProjectOnPlane(m_moveDirection, hitInfo.normal);
+
             // Set downward force to stick to ground when walking on slopes
+            // NOTE: Shouldn't gravity be enough to counter this? Maybe not. Basically magnifying gravity
+            // when grounded vs in air.
             m_moveDirection.y = -m_antiBumpFactor;
 
             // Get move velocity Vector3 by multiplying speed to moveDirection Vector3
@@ -249,7 +253,8 @@ public class FPSController : MonoBehaviour {
                 m_jumpFrameCounter++;
             else if (m_jumpFrameCounter >= m_framesGroundedBetweenJumps)
             {
-                m_moveVelocity.y = m_jumpSpeed;
+                m_moveVelocity.y = m_jumpVerticalSpeed;
+                m_moveVelocity += m_moveDirection * m_jumpHorizontalSpeed;
                 m_jumpFrameCounter = 0;
 
                 PlayJumpingSound();
@@ -259,6 +264,10 @@ public class FPSController : MonoBehaviour {
             }
         }
         // Else player is NOT grounded
+        // NOTE: Use speed at point player left the ground instead of m_speed which is set depending on MoveState
+        // This allows other factors that affect speed while grounded to carry over while in air.
+        // Use CharacterController.velocity.x,y,z so the speed can also be affected while falling.
+        // Add to this speed if using airControl or airAssist
         else
         {
             // If airControl is allowed (DON'T change y-velocity; let gravity accumulate)
@@ -508,6 +517,8 @@ public class FPSController : MonoBehaviour {
         body.AddForceAtPosition(m_characterController.velocity * 0.1f, hit.point, ForceMode.Impulse);
     }
 
+    // OnGUI
+
     private void OnGUI()
     {
         if (!m_showStatsGUI)
@@ -530,8 +541,9 @@ public class FPSController : MonoBehaviour {
             "\nCameraInput: " + new Vector2(xInput, yInput) + 
             "\nCameraRotation: " + new Vector2(yRot, xRot);
 
-        GUI.contentColor = Color.white;
+        //GUI.contentColor = Color.white;
         GUIStyle myGUIStyle = new GUIStyle();
+        myGUIStyle.normal.textColor = Color.white;
         myGUIStyle.clipping = TextClipping.Clip;
 
         GUI.Label(new Rect(5f, Screen.height * .06f, Screen.width * .3f, Screen.height * .5f), 

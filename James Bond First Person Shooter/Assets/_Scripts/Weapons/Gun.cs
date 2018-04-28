@@ -22,12 +22,17 @@ using UnityEngine;
 * Can I adjust horizontal limits of animation through script? Would it be easier to have the curve in the editor under each weapon bob properties.
 * - Use script to move weapon to aim down sights. Fire animation will play the same since script moves parent of weapon model. 
 * - BulletLineRenderer: set first position in world space location so bullet line will stay in line wherever bullet originally fired from
+* - Awake() is NOT called on disabled GameObjects at beginning of level. It's called when the GameObject is SetActive.
+* Can minimize performance cost by using SerializeField to assign references in Editor or SetActive on all weapons at
+* level load to run Awake() and Start() for each weapon, and then SetActive all to false except currently selected weapon, default to no weapon equipped. 
+* Reduce use of Find(string)
+* 
 */
 
 public enum GunState { Idle, HipFire, Reload, MoveBob };
 
-public class Gun : MonoBehaviour {
-
+public class Gun : MonoBehaviour
+{
     //[SerializeField] private GunState m_gunState = GunState.Idle;
 
     // Enumeration of FiringMode to choose weapon firing mode
@@ -220,7 +225,7 @@ public class Gun : MonoBehaviour {
         Ray ray = m_fpsCamera.ScreenPointToRay(screenCenterPoint);
         RaycastHit hit;
 
-        Physics.Raycast(ray, out hit, m_weaponRange, m_layerMask);
+        Physics.Raycast(ray, out hit, m_weaponRange, m_layerMask, QueryTriggerInteraction.Ignore);
         Vector3 targetPoint;
         //float timeToHit;
         //float targetDistance;
@@ -285,7 +290,8 @@ public class Gun : MonoBehaviour {
 
         // Get bulletHoleClone from ObjectPooler
         //m_bulletHoleClone = ObjectPooler.sharedInstance.GetPooledObject("BulletHole");
-        m_bulletHoleClone = m_bulletHoleController.GetBulletHole(hit.collider.material);
+        //m_bulletHoleClone = m_bulletHoleController.GetBulletHole(hit.collider.material);
+        m_bulletHoleClone = m_bulletHoleController.GetBulletHole(hit);
 
         if (m_bulletHoleClone != null)
         {

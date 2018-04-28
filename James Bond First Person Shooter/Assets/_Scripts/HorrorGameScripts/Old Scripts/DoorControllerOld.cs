@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DoorController : MonoBehaviour {
+public class DoorControllerOld : MonoBehaviour {
 
     [SerializeField] private float openAngle = 90.0f;
     private float doorClickOpenAngle = 2.0f;
