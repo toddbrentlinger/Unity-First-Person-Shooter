@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PauseMenuScreen : MonoBehaviour {
-
+public class PauseMenuScreen : MonoBehaviour
+{
     public static bool gameIsPaused = false;
     [SerializeField] private GameObject m_pauseMenuUI;
     private FPSController m_playerController;

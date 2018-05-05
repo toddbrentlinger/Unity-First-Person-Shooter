@@ -295,17 +295,20 @@ public class Gun : MonoBehaviour
 
         if (m_bulletHoleClone != null)
         {
-            // Get bulletHolePosition a short distance above the hit point
-            // Vector3 bulletHolePosition = hit.point + hit.normal * .01f;
+            // Set bullet hole parent to object that raycasthit hits
+            m_bulletHoleClone.transform.SetParent(hit.transform, false);
 
             // Set bulletHolePosition a short distance above the hit point
-            m_bulletHoleClone.transform.position = hit.point + hit.normal * .01f;
+            m_bulletHoleClone.transform.position = hit.point + hit.normal * .001f;
+
             // Set bulletHoleRotation by randomly spinning bulletHole and orient in line with hit point normal
             m_bulletHoleClone.transform.rotation = Quaternion.FromToRotation(Vector3.forward, hit.normal)
                 * Quaternion.Euler(Vector3.forward * Random.Range(0, 360));
 
-            // Set bullet hole parent to object that raycasthit hits
-            m_bulletHoleClone.transform.SetParent(hit.transform);
+            // Randomize 2D scale, NOT depth
+            float holeScale = Random.Range(.6f, .8f);
+            m_bulletHoleClone.transform.localScale = new Vector3(holeScale, holeScale, 1f);
+
             // Set bullet hole active
             m_bulletHoleClone.SetActive(true);
 

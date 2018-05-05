@@ -1,0 +1,450 @@
+fileFormatVersion: 2
+guid: 6d025852331c0bc4a9f2ce2c72ee7a38
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: FullBodyIK
+    100002: Goal
+    100004: 'Goal '
+    100006: Goal  1
+    100008: Goal  2
+    100010: Goal  3
+    100012: Goal  4
+    100014: Home
+    100016: InsertLocator
+    100018: Left
+    100020: Left_Elbow
+    100022: Left_IndexFinger01
+    100024: Left_IndexFinger02
+    100026: Left_IndexFinger03
+    100028: Left_IndexFinger04
+    100030: Left_MiddleFinger01
+    100032: Left_MiddleFinger02
+    100034: Left_MiddleFinger03
+    100036: Left_MiddleFinger04
+    100038: Left_Palm
+    100040: Left_Pinky01
+    100042: Left_Pinky02
+    100044: Left_Pinky03
+    100046: Left_Pinky04
+    100048: 'Left_PinkyFinger02 '
+    100050: 'Left_PinkyFinger03 '
+    100052: Left_RingFinger01
+    100054: Left_RingFinger02
+    100056: Left_RingFinger03
+    100058: Left_RingFinger04
+    100060: Left_Shoulder
+    100062: Left_Thumb01
+    100064: Left_Wrist_End
+    100066: Left_Wrist_Start
+    100068: //RootNode
+    100070: Mesh
+    100072: 'Mesh '
+    100074: PumpLocator
+    100076: ReloadLocator
+    100078: ReloadMesh
+    100080: Right
+    100082: Right_Elbow
+    100084: Right_Hand
+    100086: Right_IndexFinger01
+    100088: Right_IndexFinger02
+    100090: Right_IndexFinger03
+    100092: Right_IndexFinger04
+    100094: Right_MiddleFinger01
+    100096: Right_MiddleFinger02
+    100098: Right_MiddleFinger03
+    100100: Right_MiddleFinger04
+    100102: Right_Palm
+    100104: Right_Pinky01
+    100106: Right_Pinky02
+    100108: Right_Pinky03
+    100110: Right_Pinky04
+    100112: Right_RingFinger01
+    100114: Right_RingFinger02
+    100116: Right_RingFinger03
+    100118: Right_RingFinger04
+    100120: Right_Shoulder
+    100122: Right_Thumb01
+    100124: Right_Thumb02
+    100126: Right_Thumb03
+    100128: Right_Wrist_End
+    100130: Right_Wrist_Start
+    100132: SlugLocator01
+    100134: SlugLocator02
+    100136: SlugMesh
+    100138: 'SlugMesh '
+    100140: TriggerLocator
+    100142: TriggerMesh
+    100144: 'WeaponMainLocator '
+    100146: WeaponMainMesh
+    100148: InsertMesh
+    100150: PumpMesh
+    100152: SlugMesh01
+    100154: SlugMesh02
+    100156: WeaponMainLocator
+    400000: FullBodyIK
+    400002: Goal
+    400004: 'Goal '
+    400006: Goal  1
+    400008: Goal  2
+    400010: Goal  3
+    400012: Goal  4
+    400014: Home
+    400016: InsertLocator
+    400018: Left
+    400020: Left_Elbow
+    400022: Left_IndexFinger01
+    400024: Left_IndexFinger02
+    400026: Left_IndexFinger03
+    400028: Left_IndexFinger04
+    400030: Left_MiddleFinger01
+    400032: Left_MiddleFinger02
+    400034: Left_MiddleFinger03
+    400036: Left_MiddleFinger04
+    400038: Left_Palm
+    400040: Left_Pinky01
+    400042: Left_Pinky02
+    400044: Left_Pinky03
+    400046: Left_Pinky04
+    400048: 'Left_PinkyFinger02 '
+    400050: 'Left_PinkyFinger03 '
+    400052: Left_RingFinger01
+    400054: Left_RingFinger02
+    400056: Left_RingFinger03
+    400058: Left_RingFinger04
+    400060: Left_Shoulder
+    400062: Left_Thumb01
+    400064: Left_Wrist_End
+    400066: Left_Wrist_Start
+    400068: //RootNode
+    400070: Mesh
+    400072: 'Mesh '
+    400074: PumpLocator
+    400076: ReloadLocator
+    400078: ReloadMesh
+    400080: Right
+    400082: Right_Elbow
+    400084: Right_Hand
+    400086: Right_IndexFinger01
+    400088: Right_IndexFinger02
+    400090: Right_IndexFinger03
+    400092: Right_IndexFinger04
+    400094: Right_MiddleFinger01
+    400096: Right_MiddleFinger02
+    400098: Right_MiddleFinger03
+    400100: Right_MiddleFinger04
+    400102: Right_Palm
+    400104: Right_Pinky01
+    400106: Right_Pinky02
+    400108: Right_Pinky03
+    400110: Right_Pinky04
+    400112: Right_RingFinger01
+    400114: Right_RingFinger02
+    400116: Right_RingFinger03
+    400118: Right_RingFinger04
+    400120: Right_Shoulder
+    400122: Right_Thumb01
+    400124: Right_Thumb02
+    400126: Right_Thumb03
+    400128: Right_Wrist_End
+    400130: Right_Wrist_Start
+    400132: SlugLocator01
+    400134: SlugLocator02
+    400136: SlugMesh
+    400138: 'SlugMesh '
+    400140: TriggerLocator
+    400142: TriggerMesh
+    400144: 'WeaponMainLocator '
+    400146: WeaponMainMesh
+    400148: InsertMesh
+    400150: PumpMesh
+    400152: SlugMesh01
+    400154: SlugMesh02
+    400156: WeaponMainLocator
+    2300000: Mesh
+    2300002: 'Mesh '
+    2300004: ReloadMesh
+    2300006: SlugMesh
+    2300008: 'SlugMesh '
+    2300010: TriggerMesh
+    2300012: WeaponMainMesh
+    2300014: InsertMesh
+    2300016: PumpMesh
+    2300018: SlugMesh01
+    2300020: SlugMesh02
+    3300000: Mesh
+    3300002: 'Mesh '
+    3300004: ReloadMesh
+    3300006: SlugMesh
+    3300008: 'SlugMesh '
+    3300010: TriggerMesh
+    3300012: WeaponMainMesh
+    3300014: InsertMesh
+    3300016: PumpMesh
+    3300018: SlugMesh01
+    3300020: SlugMesh02
+    4300000: 'Mesh '
+    4300002: Mesh
+    4300004: TriggerMesh
+    4300006: ReloadMesh
+    4300008: WeaponMainMesh
+    4300010: SlugMesh
+    4300012: 'SlugMesh '
+    4300014: Right
+    4300016: Left
+    4300018: InsertMesh
+    4300020: PumpMesh
+    4300022: SlugMesh01
+    4300024: SlugMesh02
+    7400000: Idle01
+    7400002: Idle02
+    7400004: Idle03
+    7400006: Idle04
+    7400008: Reload01
+    7400010: Reload02
+    7400012: Fire01
+    7400014: Pump01
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: Left
+    13700002: Right
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 0
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Idle01
+      takeName: modo_Anim
+      firstFrame: 5
+      lastFrame: 34
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Idle02
+      takeName: modo_Anim
+      firstFrame: 36
+      lastFrame: 50
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Idle03
+      takeName: modo_Anim
+      firstFrame: 52
+      lastFrame: 72
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Idle04
+      takeName: modo_Anim
+      firstFrame: 75
+      lastFrame: 85
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Reload01
+      takeName: modo_Anim
+      firstFrame: 95
+      lastFrame: 134
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Reload02
+      takeName: modo_Anim
+      firstFrame: 137
+      lastFrame: 176
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Fire01
+      takeName: modo_Anim
+      firstFrame: 176
+      lastFrame: 194
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

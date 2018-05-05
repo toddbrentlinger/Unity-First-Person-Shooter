@@ -74,7 +74,7 @@ public class PlayerWeaponsController : MonoBehaviour {
         if (selectedWeapon == currentWeapon || selectedWeapon == 0)
         {
             // Disable weapon crosshair, which activates default crosshair
-            CanvasUI.sharedInstance.SetActiveWeaponCrosshair(false);
+            CanvasUI.sharedInstance.SetActiveWeaponCrosshair(Crosshair.Default);
 
             // Deactivate all weapons
             foreach (Transform weapon in transform)
@@ -88,7 +88,7 @@ public class PlayerWeaponsController : MonoBehaviour {
 
         // If current weapon is negative (holstered), activate weapon cursor, which deactivates default cursor
         if (currentWeapon == 0)
-            CanvasUI.sharedInstance.SetActiveWeaponCrosshair(true);
+            CanvasUI.sharedInstance.SetActiveWeaponCrosshair(Crosshair.Weapon);
 
         /// Deactivate all weapons except selectedWeapon
         int i = 0;

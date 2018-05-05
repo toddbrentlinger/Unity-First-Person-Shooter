@@ -1,0 +1,896 @@
+fileFormatVersion: 2
+guid: 6430f79e6f5e5d943985886a1fb8d3c0
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Right_Pinky01
+    100002: ClipMesh
+    100004: Left_Pinky02
+    100006: TopPartLocator
+    100008: //RootNode
+    100010: MainMesh
+    100012: Left_Shoulder
+    100014: Home
+    100016: Camera
+    100018: LeftElbowGoal
+    100020: Right_IndexFinger04
+    100022: Right_IndexFinger03
+    100024: Right_Palm
+    100026: Right_Wrist_End
+    100028: LeftSwitchMesh
+    100030: Left
+    100032: Left_Pinky04
+    100034: Left_Pinky03
+    100036: ReloadMesh
+    100038: Bullets
+    100040: ClipLocator
+    100042: LeftHandCoal
+    100044: LeftShoulderGoal
+    100046: FireMesh
+    100048: Outdoor Probe 06.lxe
+    100050: ClipSpawnMesh
+    100052: FireLocator
+    100054: ReloadLocator
+    100056: RightSwitchMesh
+    100058: TriggerMesh
+    100060: Right_Thumb03
+    100062: Right_Thumb02
+    100064: Right
+    100066: LeftArmLocator
+    100068: Left_Palm
+    100070: FullBodyIK
+    100072: Right_Elbow
+    100074: Right_Shoulder
+    100076: TriggerLocator
+    100078: RightHand
+    100080: Left_Pinky01
+    100082: Left_Thumb01
+    100084: Right_Pinky04
+    100086: Right_Pinky03
+    100088: Right_Pinky02
+    100090: Right_Thumb01
+    100092: Right_IndexFinger02
+    100094: Right_IndexFinger01
+    100096: Right_RingFinger04
+    100098: Right_RingFinger03
+    100100: Right_RingFinger02
+    100102: Right_RingFinger01
+    100104: Right_MiddleFinger04
+    100106: Right_MiddleFinger03
+    100108: Right_MiddleFinger02
+    100110: Right_MiddleFinger01
+    100112: 'RightSwitchLocator '
+    100114: LeftSwitchLocator
+    100116: ClipSpawnLocator
+    100118: Right_Wrist_Start
+    100120: 'Left_PinkyFinger03 '
+    100122: 'Left_PinkyFinger02 '
+    100124: Left_IndexFinger04
+    100126: Left_IndexFinger03
+    100128: Left_IndexFinger02
+    100130: Left_IndexFinger01
+    100132: Left_RingFinger04
+    100134: Left_RingFinger03
+    100136: Left_RingFinger02
+    100138: Left_RingFinger01
+    100140: Left_MiddleFinger04
+    100142: Left_MiddleFinger03
+    100144: Left_MiddleFinger02
+    100146: Left_MiddleFinger01
+    100148: Left_Wrist_Start
+    100150: Left_Wrist_End
+    100152: Left_Elbow
+    100154: RightElbowGoal
+    100156: HammerMesh
+    100158: HammerLocator
+    100160: TopPartMesh
+    100162: RightHandGoal
+    100164: RightShoulderGoal
+    100166: Texture Group
+    100168: 'Texture Group '
+    100170: TextureLocators
+    400000: Right_Pinky01
+    400002: ClipMesh
+    400004: Left_Pinky02
+    400006: TopPartLocator
+    400008: //RootNode
+    400010: MainMesh
+    400012: Left_Shoulder
+    400014: Home
+    400016: Camera
+    400018: LeftElbowGoal
+    400020: Right_IndexFinger04
+    400022: Right_IndexFinger03
+    400024: Right_Palm
+    400026: Right_Wrist_End
+    400028: LeftSwitchMesh
+    400030: Left
+    400032: Left_Pinky04
+    400034: Left_Pinky03
+    400036: ReloadMesh
+    400038: Bullets
+    400040: ClipLocator
+    400042: LeftHandCoal
+    400044: LeftShoulderGoal
+    400046: FireMesh
+    400048: Outdoor Probe 06.lxe
+    400050: ClipSpawnMesh
+    400052: FireLocator
+    400054: ReloadLocator
+    400056: RightSwitchMesh
+    400058: TriggerMesh
+    400060: Right_Thumb03
+    400062: Right_Thumb02
+    400064: Right
+    400066: LeftArmLocator
+    400068: Left_Palm
+    400070: FullBodyIK
+    400072: Right_Elbow
+    400074: Right_Shoulder
+    400076: TriggerLocator
+    400078: RightHand
+    400080: Left_Pinky01
+    400082: Left_Thumb01
+    400084: Right_Pinky04
+    400086: Right_Pinky03
+    400088: Right_Pinky02
+    400090: Right_Thumb01
+    400092: Right_IndexFinger02
+    400094: Right_IndexFinger01
+    400096: Right_RingFinger04
+    400098: Right_RingFinger03
+    400100: Right_RingFinger02
+    400102: Right_RingFinger01
+    400104: Right_MiddleFinger04
+    400106: Right_MiddleFinger03
+    400108: Right_MiddleFinger02
+    400110: Right_MiddleFinger01
+    400112: 'RightSwitchLocator '
+    400114: LeftSwitchLocator
+    400116: ClipSpawnLocator
+    400118: Right_Wrist_Start
+    400120: 'Left_PinkyFinger03 '
+    400122: 'Left_PinkyFinger02 '
+    400124: Left_IndexFinger04
+    400126: Left_IndexFinger03
+    400128: Left_IndexFinger02
+    400130: Left_IndexFinger01
+    400132: Left_RingFinger04
+    400134: Left_RingFinger03
+    400136: Left_RingFinger02
+    400138: Left_RingFinger01
+    400140: Left_MiddleFinger04
+    400142: Left_MiddleFinger03
+    400144: Left_MiddleFinger02
+    400146: Left_MiddleFinger01
+    400148: Left_Wrist_Start
+    400150: Left_Wrist_End
+    400152: Left_Elbow
+    400154: RightElbowGoal
+    400156: HammerMesh
+    400158: HammerLocator
+    400160: TopPartMesh
+    400162: RightHandGoal
+    400164: RightShoulderGoal
+    400166: Texture Group
+    400168: 'Texture Group '
+    400170: TextureLocators
+    2300000: ClipMesh
+    2300002: MainMesh
+    2300004: LeftSwitchMesh
+    2300006: ReloadMesh
+    2300008: Bullets
+    2300010: FireMesh
+    2300012: ClipSpawnMesh
+    2300014: RightSwitchMesh
+    2300016: TriggerMesh
+    2300018: HammerMesh
+    2300020: TopPartMesh
+    3300000: ClipMesh
+    3300002: MainMesh
+    3300004: LeftSwitchMesh
+    3300006: ReloadMesh
+    3300008: Bullets
+    3300010: FireMesh
+    3300012: ClipSpawnMesh
+    3300014: RightSwitchMesh
+    3300016: TriggerMesh
+    3300018: HammerMesh
+    3300020: TopPartMesh
+    4300000: TriggerMesh
+    4300002: FireMesh
+    4300004: ReloadMesh
+    4300006: Bullets
+    4300008: ClipMesh
+    4300010: ClipSpawnMesh
+    4300012: HammerMesh
+    4300014: LeftSwitchMesh
+    4300016: RightSwitchMesh
+    4300018: TopPartMesh
+    4300020: MainMesh
+    4300022: Left
+    4300024: Right
+    7400000: Out of Ammo
+    7400002: StandardReload
+    7400004: LeftArmDown
+    7400006: OneHandGrip
+    7400008: Idle01
+    7400010: Idle02
+    7400012: Idle03
+    7400014: Idle04
+    7400016: Fire
+    7400018: FireEmpty
+    7400020: ReloadEmpty
+    7400022: ReloadGeneric
+    7400024: Wield
+    11100000: //RootNode
+    13700000: Left
+    13700002: Right
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 0
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Idle01
+      takeName: 
+      firstFrame: 28
+      lastFrame: 45
+      wrapMode: 8
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Idle02
+      takeName: 
+      firstFrame: 46
+      lastFrame: 63
+      wrapMode: 1
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Idle03
+      takeName: 
+      firstFrame: 64
+      lastFrame: 81
+      wrapMode: 1
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Idle04
+      takeName: 
+      firstFrame: 82
+      lastFrame: 99
+      wrapMode: 1
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Fire
+      takeName: 
+      firstFrame: 109
+      lastFrame: 117
+      wrapMode: 1
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: FireEmpty
+      takeName: 
+      firstFrame: 120
+      lastFrame: 128
+      wrapMode: 1
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: ReloadEmpty
+      takeName: 
+      firstFrame: 129
+      lastFrame: 176
+      wrapMode: 8
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: StandardReload
+      takeName: modo_Anim
+      firstFrame: 180
+      lastFrame: 204
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Wield
+      takeName: modo_Anim
+      firstFrame: 147
+      lastFrame: 176
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Camera
+        weight: 1
+      - path: Home
+        weight: 1
+      - path: Home/FullBodyIK
+        weight: 1
+      - path: Home/Left_Shoulder
+        weight: 1
+      - path: Home/Left_Shoulder/Left_Elbow
+        weight: 1
+      - path: Home/Left_Shoulder/Left_Elbow/Left_Wrist_Start
+        weight: 1
+      - path: Home/Left_Shoulder/Left_Elbow/Left_Wrist_Start/Left_Wrist_End
+        weight: 1
+      - path: Home/Left_Shoulder/Left_Elbow/Left_Wrist_Start/Left_Wrist_End/Left_Palm
+        weight: 1
+      - path: Home/Left_Shoulder/Left_Elbow/Left_Wrist_Start/Left_Wrist_End/Left_Palm/Left_IndexFinger01
+        weight: 1
+      - path: Home/Left_Shoulder/Left_Elbow/Left_Wrist_Start/Left_Wrist_End/Left_Palm/Left_IndexFinger01/Left_IndexFinger02
+        weight: 1
+      - path: Home/Left_Shoulder/Left_Elbow/Left_Wrist_Start/Left_Wrist_End/Left_Palm/Left_IndexFinger01/Left_IndexFinger02/Left_IndexFinger03
+        weight: 1
+      - path: Home/Left_Shoulder/Left_Elbow/Left_Wrist_Start/Left_Wrist_End/Left_Palm/Left_IndexFinger01/Left_IndexFinger02/Left_IndexFinger03/Left_IndexFinger04
+        weight: 1
+      - path: Home/Left_Shoulder/Left_Elbow/Left_Wrist_Start/Left_Wrist_End/Left_Palm/Left_MiddleFinger01
+        weight: 1
+      - path: Home/Left_Shoulder/Left_Elbow/Left_Wrist_Start/Left_Wrist_End/Left_Palm/Left_MiddleFinger01/Left_MiddleFinger02
+        weight: 1
+      - path: Home/Left_Shoulder/Left_Elbow/Left_Wrist_Start/Left_Wrist_End/Left_Palm/Left_MiddleFinger01/Left_MiddleFinger02/Left_MiddleFinger03
+        weight: 1
+      - path: Home/Left_Shoulder/Left_Elbow/Left_Wrist_Start/Left_Wrist_End/Left_Palm/Left_MiddleFinger01/Left_MiddleFinger02/Left_MiddleFinger03/Left_MiddleFinger04
+        weight: 1
+      - path: Home/Left_Shoulder/Left_Elbow/Left_Wrist_Start/Left_Wrist_End/Left_Palm/Left_Pinky01
+        weight: 1
+      - path: Home/Left_Shoulder/Left_Elbow/Left_Wrist_Start/Left_Wrist_End/Left_Palm/Left_Pinky01/Left_Pinky02
+        weight: 1
+      - path: Home/Left_Shoulder/Left_Elbow/Left_Wrist_Start/Left_Wrist_End/Left_Palm/Left_Pinky01/Left_Pinky02/Left_Pinky03
+        weight: 1
+      - path: Home/Left_Shoulder/Left_Elbow/Left_Wrist_Start/Left_Wrist_End/Left_Palm/Left_Pinky01/Left_Pinky02/Left_Pinky03/Left_Pinky04
+        weight: 1
+      - path: Home/Left_Shoulder/Left_Elbow/Left_Wrist_Start/Left_Wrist_End/Left_Palm/Left_RingFinger01
+        weight: 1
+      - path: Home/Left_Shoulder/Left_Elbow/Left_Wrist_Start/Left_Wrist_End/Left_Palm/Left_RingFinger01/Left_RingFinger02
+        weight: 1
+      - path: Home/Left_Shoulder/Left_Elbow/Left_Wrist_Start/Left_Wrist_End/Left_Palm/Left_RingFinger01/Left_RingFinger02/Left_RingFinger03
+        weight: 1
+      - path: Home/Left_Shoulder/Left_Elbow/Left_Wrist_Start/Left_Wrist_End/Left_Palm/Left_RingFinger01/Left_RingFinger02/Left_RingFinger03/Left_RingFinger04
+        weight: 1
+      - path: Home/Left_Shoulder/Left_Elbow/Left_Wrist_Start/Left_Wrist_End/Left_Palm/LeftArmLocator
+        weight: 1
+      - path: Home/Left_Shoulder/Left_Elbow/Left_Wrist_Start/Left_Wrist_End/Left_Thumb01
+        weight: 1
+      - path: 'Home/Left_Shoulder/Left_Elbow/Left_Wrist_Start/Left_Wrist_End/Left_Thumb01/Left_PinkyFinger02 '
+        weight: 1
+      - path: 'Home/Left_Shoulder/Left_Elbow/Left_Wrist_Start/Left_Wrist_End/Left_Thumb01/Left_PinkyFinger02
+          /Left_PinkyFinger03 '
+        weight: 1
+      - path: Home/Right_Shoulder
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/Right_IndexFinger01
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/Right_IndexFinger01/Right_IndexFinger02
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/Right_IndexFinger01/Right_IndexFinger02/Right_IndexFinger03
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/Right_IndexFinger01/Right_IndexFinger02/Right_IndexFinger03/Right_IndexFinger04
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/Right_MiddleFinger01
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/Right_MiddleFinger01/Right_MiddleFinger02
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/Right_MiddleFinger01/Right_MiddleFinger02/Right_MiddleFinger03
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/Right_MiddleFinger01/Right_MiddleFinger02/Right_MiddleFinger03/Right_MiddleFinger04
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/Right_Pinky01
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/Right_Pinky01/Right_Pinky02
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/Right_Pinky01/Right_Pinky02/Right_Pinky03
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/Right_Pinky01/Right_Pinky02/Right_Pinky03/Right_Pinky04
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/Right_RingFinger01
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/Right_RingFinger01/Right_RingFinger02
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/Right_RingFinger01/Right_RingFinger02/Right_RingFinger03
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/Right_RingFinger01/Right_RingFinger02/Right_RingFinger03/Right_RingFinger04
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/RightHand
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/RightHand/ClipLocator
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/RightHand/ClipLocator/ClipMesh
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/RightHand/ClipSpawnLocator
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/RightHand/ClipSpawnLocator/ClipSpawnMesh
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/RightHand/FireLocator
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/RightHand/FireLocator/FireMesh
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/RightHand/HammerLocator
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/RightHand/HammerLocator/HammerMesh
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/RightHand/MainMesh
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/RightHand/ReloadLocator
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/RightHand/ReloadLocator/ReloadMesh
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/RightHand/TopPartLocator
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/RightHand/TopPartLocator/LeftSwitchLocator
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/RightHand/TopPartLocator/LeftSwitchLocator/LeftSwitchMesh
+        weight: 1
+      - path: 'Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/RightHand/TopPartLocator/RightSwitchLocator '
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/RightHand/TopPartLocator/RightSwitchLocator
+          /RightSwitchMesh
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/RightHand/TopPartLocator/TopPartMesh
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/RightHand/TriggerLocator
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/RightHand/TriggerLocator/TriggerMesh
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Thumb01
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Thumb01/Right_Thumb02
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Thumb01/Right_Thumb02/Right_Thumb03
+        weight: 1
+      - path: Left
+        weight: 1
+      - path: LeftElbowGoal
+        weight: 1
+      - path: LeftHandCoal
+        weight: 1
+      - path: LeftShoulderGoal
+        weight: 1
+      - path: Outdoor Probe 06.lxe
+        weight: 1
+      - path: 'Outdoor Probe 06.lxe/Texture Group '
+        weight: 1
+      - path: Right
+        weight: 1
+      - path: RightElbowGoal
+        weight: 1
+      - path: RightHandGoal
+        weight: 1
+      - path: RightShoulderGoal
+        weight: 1
+      - path: Texture Group
+        weight: 1
+      - path: TextureLocators
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Out of Ammo
+      takeName: modo_Anim
+      firstFrame: 120
+      lastFrame: 128
+      wrapMode: 8
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Camera
+        weight: 1
+      - path: Home
+        weight: 1
+      - path: Home/FullBodyIK
+        weight: 1
+      - path: Home/Left_Shoulder
+        weight: 1
+      - path: Home/Left_Shoulder/Left_Elbow
+        weight: 1
+      - path: Home/Left_Shoulder/Left_Elbow/Left_Wrist_Start
+        weight: 1
+      - path: Home/Left_Shoulder/Left_Elbow/Left_Wrist_Start/Left_Wrist_End
+        weight: 1
+      - path: Home/Left_Shoulder/Left_Elbow/Left_Wrist_Start/Left_Wrist_End/Left_Palm
+        weight: 1
+      - path: Home/Left_Shoulder/Left_Elbow/Left_Wrist_Start/Left_Wrist_End/Left_Palm/Left_IndexFinger01
+        weight: 1
+      - path: Home/Left_Shoulder/Left_Elbow/Left_Wrist_Start/Left_Wrist_End/Left_Palm/Left_IndexFinger01/Left_IndexFinger02
+        weight: 1
+      - path: Home/Left_Shoulder/Left_Elbow/Left_Wrist_Start/Left_Wrist_End/Left_Palm/Left_IndexFinger01/Left_IndexFinger02/Left_IndexFinger03
+        weight: 1
+      - path: Home/Left_Shoulder/Left_Elbow/Left_Wrist_Start/Left_Wrist_End/Left_Palm/Left_IndexFinger01/Left_IndexFinger02/Left_IndexFinger03/Left_IndexFinger04
+        weight: 1
+      - path: Home/Left_Shoulder/Left_Elbow/Left_Wrist_Start/Left_Wrist_End/Left_Palm/Left_MiddleFinger01
+        weight: 1
+      - path: Home/Left_Shoulder/Left_Elbow/Left_Wrist_Start/Left_Wrist_End/Left_Palm/Left_MiddleFinger01/Left_MiddleFinger02
+        weight: 1
+      - path: Home/Left_Shoulder/Left_Elbow/Left_Wrist_Start/Left_Wrist_End/Left_Palm/Left_MiddleFinger01/Left_MiddleFinger02/Left_MiddleFinger03
+        weight: 1
+      - path: Home/Left_Shoulder/Left_Elbow/Left_Wrist_Start/Left_Wrist_End/Left_Palm/Left_MiddleFinger01/Left_MiddleFinger02/Left_MiddleFinger03/Left_MiddleFinger04
+        weight: 1
+      - path: Home/Left_Shoulder/Left_Elbow/Left_Wrist_Start/Left_Wrist_End/Left_Palm/Left_Pinky01
+        weight: 1
+      - path: Home/Left_Shoulder/Left_Elbow/Left_Wrist_Start/Left_Wrist_End/Left_Palm/Left_Pinky01/Left_Pinky02
+        weight: 1
+      - path: Home/Left_Shoulder/Left_Elbow/Left_Wrist_Start/Left_Wrist_End/Left_Palm/Left_Pinky01/Left_Pinky02/Left_Pinky03
+        weight: 1
+      - path: Home/Left_Shoulder/Left_Elbow/Left_Wrist_Start/Left_Wrist_End/Left_Palm/Left_Pinky01/Left_Pinky02/Left_Pinky03/Left_Pinky04
+        weight: 1
+      - path: Home/Left_Shoulder/Left_Elbow/Left_Wrist_Start/Left_Wrist_End/Left_Palm/Left_RingFinger01
+        weight: 1
+      - path: Home/Left_Shoulder/Left_Elbow/Left_Wrist_Start/Left_Wrist_End/Left_Palm/Left_RingFinger01/Left_RingFinger02
+        weight: 1
+      - path: Home/Left_Shoulder/Left_Elbow/Left_Wrist_Start/Left_Wrist_End/Left_Palm/Left_RingFinger01/Left_RingFinger02/Left_RingFinger03
+        weight: 1
+      - path: Home/Left_Shoulder/Left_Elbow/Left_Wrist_Start/Left_Wrist_End/Left_Palm/Left_RingFinger01/Left_RingFinger02/Left_RingFinger03/Left_RingFinger04
+        weight: 1
+      - path: Home/Left_Shoulder/Left_Elbow/Left_Wrist_Start/Left_Wrist_End/Left_Palm/LeftArmLocator
+        weight: 1
+      - path: Home/Left_Shoulder/Left_Elbow/Left_Wrist_Start/Left_Wrist_End/Left_Thumb01
+        weight: 1
+      - path: 'Home/Left_Shoulder/Left_Elbow/Left_Wrist_Start/Left_Wrist_End/Left_Thumb01/Left_PinkyFinger02 '
+        weight: 1
+      - path: 'Home/Left_Shoulder/Left_Elbow/Left_Wrist_Start/Left_Wrist_End/Left_Thumb01/Left_PinkyFinger02
+          /Left_PinkyFinger03 '
+        weight: 1
+      - path: Home/Right_Shoulder
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/Right_IndexFinger01
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/Right_IndexFinger01/Right_IndexFinger02
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/Right_IndexFinger01/Right_IndexFinger02/Right_IndexFinger03
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/Right_IndexFinger01/Right_IndexFinger02/Right_IndexFinger03/Right_IndexFinger04
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/Right_MiddleFinger01
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/Right_MiddleFinger01/Right_MiddleFinger02
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/Right_MiddleFinger01/Right_MiddleFinger02/Right_MiddleFinger03
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/Right_MiddleFinger01/Right_MiddleFinger02/Right_MiddleFinger03/Right_MiddleFinger04
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/Right_Pinky01
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/Right_Pinky01/Right_Pinky02
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/Right_Pinky01/Right_Pinky02/Right_Pinky03
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/Right_Pinky01/Right_Pinky02/Right_Pinky03/Right_Pinky04
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/Right_RingFinger01
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/Right_RingFinger01/Right_RingFinger02
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/Right_RingFinger01/Right_RingFinger02/Right_RingFinger03
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/Right_RingFinger01/Right_RingFinger02/Right_RingFinger03/Right_RingFinger04
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/RightHand
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/RightHand/ClipLocator
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/RightHand/ClipLocator/ClipMesh
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/RightHand/ClipSpawnLocator
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/RightHand/ClipSpawnLocator/ClipSpawnMesh
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/RightHand/FireLocator
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/RightHand/FireLocator/FireMesh
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/RightHand/HammerLocator
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/RightHand/HammerLocator/HammerMesh
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/RightHand/MainMesh
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/RightHand/ReloadLocator
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/RightHand/ReloadLocator/ReloadMesh
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/RightHand/TopPartLocator
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/RightHand/TopPartLocator/LeftSwitchLocator
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/RightHand/TopPartLocator/LeftSwitchLocator/LeftSwitchMesh
+        weight: 1
+      - path: 'Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/RightHand/TopPartLocator/RightSwitchLocator '
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/RightHand/TopPartLocator/RightSwitchLocator
+          /RightSwitchMesh
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/RightHand/TopPartLocator/TopPartMesh
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/RightHand/TriggerLocator
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Palm/RightHand/TriggerLocator/TriggerMesh
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Thumb01
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Thumb01/Right_Thumb02
+        weight: 1
+      - path: Home/Right_Shoulder/Right_Elbow/Right_Wrist_Start/Right_Wrist_End/Right_Thumb01/Right_Thumb02/Right_Thumb03
+        weight: 1
+      - path: Left
+        weight: 1
+      - path: LeftElbowGoal
+        weight: 1
+      - path: LeftHandCoal
+        weight: 1
+      - path: LeftShoulderGoal
+        weight: 1
+      - path: Outdoor Probe 06.lxe
+        weight: 1
+      - path: 'Outdoor Probe 06.lxe/Texture Group '
+        weight: 1
+      - path: Right
+        weight: 1
+      - path: RightElbowGoal
+        weight: 1
+      - path: RightHandGoal
+        weight: 1
+      - path: RightShoulderGoal
+        weight: 1
+      - path: Texture Group
+        weight: 1
+      - path: TextureLocators
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  humanoidOversampling: 1
+  additionalBone: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

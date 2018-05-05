@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class CanvasUI : MonoBehaviour {
+public enum Crosshair { Default, Weapon, Grab };
 
+public class CanvasUI : MonoBehaviour
+{
     public static CanvasUI sharedInstance;
 
     public Transform defaultCrosshair;
@@ -24,8 +26,44 @@ public class CanvasUI : MonoBehaviour {
     }
 
     // Toggle weapon crosshair
-    public void SetActiveWeaponCrosshair(bool activate = true)
+    public void SetActiveWeaponCrosshair(Crosshair crosshair)
     {
+        switch (crosshair)
+        {
+            case (Crosshair.Weapon):
+                // Deactivate defaultCrosshair
+                if (defaultCrosshair)
+                    defaultCrosshair.gameObject.SetActive(false);
+
+                // Activate weaponCrosshair
+                if (weaponCrosshair)
+                    weaponCrosshair.gameObject.SetActive(true);
+
+                // Activate ammoCount
+                if (ammoCountText)
+                    ammoCountText.gameObject.SetActive(true);
+
+                break;
+
+            case (Crosshair.Default):
+                // Deactivate ammoCount
+                if (ammoCountText)
+                    ammoCountText.gameObject.SetActive(false);
+
+                // Deactivate weaponCrosshair
+                if (weaponCrosshair)
+                    weaponCrosshair.gameObject.SetActive(false);
+
+                // Activate defaultCrosshair
+                if (defaultCrosshair)
+                    defaultCrosshair.gameObject.SetActive(true);
+
+                break;
+
+            case (Crosshair.Grab):
+                break;
+        }
+        /*
         if (activate)
         {
             // Deactivate defaultCrosshair
@@ -55,6 +93,7 @@ public class CanvasUI : MonoBehaviour {
             if (defaultCrosshair)
                 defaultCrosshair.gameObject.SetActive(true);
         }
+        */
     }
 
     // Ammo Count

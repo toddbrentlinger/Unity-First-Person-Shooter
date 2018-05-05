@@ -20,6 +20,9 @@
  * - Check if each private variable is referenced in multiple functions. Change to local if NOT or perhaps
  * pass the value by reference through a parameter in the function (perhaps when only used in two functions)
  * - CharacterController.Move in FixedUpdate()? Will it fix when player gets stuck on dynamic object edges?
+ * - Stop CheckCrouch from calling Crouch or JumpCrouch on every frame unless needed.
+ * Return if CharacterController.height is at standing or crouch height
+ * 
  */
 
 // Enumeration of Movement to choose between state of movement
@@ -116,7 +119,8 @@ public class FPSController : MonoBehaviour {
     [SerializeField] private AudioClip m_landSound; // sound played when character touches back on ground.
     private AudioSource m_audioSource;
 
-    // Properties
+    // ---------- Properties ---------- 
+
     public float Speed
     {
         get { return m_speed; }
@@ -238,7 +242,8 @@ public class FPSController : MonoBehaviour {
             Physics.SphereCast(transform.position + m_characterController.center, m_characterController.radius, Vector3.down, out hitInfo,
                                m_characterController.height / 2f, Physics.AllLayers, QueryTriggerInteraction.Ignore);
             // Get normalized Vector3 projected on plane of surface being touched
-            m_moveDirection = Vector3.ProjectOnPlane(m_moveDirection, hitInfo.normal);
+            // NOTE: Should moveDirection be normalized before multiplying speed
+            m_moveDirection = Vector3.ProjectOnPlane(m_moveDirection, hitInfo.normal).normalized;
 
             // Set downward force to stick to ground when walking on slopes
             // NOTE: Shouldn't gravity be enough to counter this? Maybe not. Basically magnifying gravity
@@ -294,120 +299,114 @@ public class FPSController : MonoBehaviour {
         m_grounded = (m_collisionFlags & CollisionFlags.Below) != 0;
     }
 
-    // Crouching
+    // ---------- Crouching ---------- 
+
+    private enum CrouchState { Down, Up, Jump };
+    private CrouchState m_crouchState;
 
     private void CheckCrouch()
     {
-        if (!m_grounded)
-        {
-            JumpCrouch();
-            return;
-        }
-
         if (m_crouching)
         {
-            // Set character controller height
-            if (m_characterController.height != m_crouchHeight)
-                m_characterController.height = Mathf.MoveTowards(m_characterController.height, m_crouchHeight, Time.deltaTime * m_crouchSpeed);
-            
-            // Set character controller center
-            if (m_characterController.center.y != m_originalCharacterControllerCenterY - m_crouchHeight * .5f)
-                m_characterController.center = new Vector3(m_characterController.center.x,
-                    m_originalCharacterControllerCenterY - (m_originalCharacterControllerHeight - m_characterController.height) * .5f,
-                    m_characterController.center.z);
-            
-            // Set camera height
-            if (m_fpsCamera.transform.localPosition.y != m_crouchHeight)
-                m_fpsCamera.transform.localPosition = new Vector3(m_fpsCamera.transform.localPosition.x,
-                    Mathf.MoveTowards(m_fpsCamera.transform.localPosition.y, m_crouchHeight, Time.deltaTime * m_crouchSpeed),
-                    m_fpsCamera.transform.localPosition.z);
+            if (!m_grounded)
+                m_crouchState = CrouchState.Jump;
+            else
+                m_crouchState = CrouchState.Down;
         }
         else
-        {
-            // Reset character controller height
-            if (m_characterController.height != m_originalCharacterControllerHeight)
-                m_characterController.height = Mathf.MoveTowards(m_characterController.height, m_originalCharacterControllerHeight, Time.deltaTime * m_crouchSpeed);
-            
-            // Reset character controller center
-            if (m_characterController.center.y != m_originalCharacterControllerCenterY)
-                m_characterController.center = new Vector3(m_characterController.center.x,
-                    m_originalCharacterControllerCenterY - (m_originalCharacterControllerHeight - m_characterController.height) * .5f,
-                    m_characterController.center.z);
+            m_crouchState = CrouchState.Up;
 
-            // Reset camera height
-            if (m_fpsCamera.transform.localPosition.y != m_originalCameraLocalHeight)
-                m_fpsCamera.transform.localPosition = new Vector3(m_fpsCamera.transform.localPosition.x,
-                    Mathf.MoveTowards(m_fpsCamera.transform.localPosition.y, m_originalCameraLocalHeight, Time.deltaTime * m_crouchSpeed),
-                    m_fpsCamera.transform.localPosition.z);
-        }
+        SetCrouch();
     }
 
-    private void JumpCrouch()
+    private void SetCrouch()
     {
-        if (m_crouching)
+        switch(m_crouchState)
         {
-            // Set character controller height
-            if (m_characterController.height != m_crouchHeight)
-            {
-                float newHeight = Mathf.MoveTowards(m_characterController.height, m_crouchHeight, Time.deltaTime * m_crouchSpeed);
-                // Delta height (difference in height changed from MoveTowards)
-                float heightDelta = newHeight - m_characterController.height;
-                // Set characterController newHeight
-                m_characterController.height = newHeight;
-
-                // Set character controller position (rises as much as characterController height falls)
-                m_characterController.transform.position = new Vector3(m_characterController.transform.position.x,
-                    m_characterController.transform.position.y - heightDelta,
-                    m_characterController.transform.position.z);
-            }
-
-            // Set character controller center
-            float characterControllerHeightDelta = m_originalCharacterControllerHeight - m_characterController.height;
-            if (m_characterController.center.y != m_originalCharacterControllerCenterY - m_crouchHeight * .5f)
-            {
-                m_characterController.center = new Vector3(m_characterController.center.x,
-                    m_originalCharacterControllerCenterY - characterControllerHeightDelta * .5f,
-                    m_characterController.center.z);
-            }
-            
-            // Set camera height
-            if (m_fpsCamera.transform.localPosition.y != m_crouchHeight)
-                m_fpsCamera.transform.localPosition = new Vector3(m_fpsCamera.transform.localPosition.x,
-                    Mathf.MoveTowards(m_fpsCamera.transform.localPosition.y, m_crouchHeight, Time.deltaTime * m_crouchSpeed),
-                    m_fpsCamera.transform.localPosition.z);      
-        }
-        else
-        {
-            // Reset character controller height
-            if (m_characterController.height != m_originalCharacterControllerHeight)
-            {
-                float newHeight = Mathf.MoveTowards(m_characterController.height, m_originalCharacterControllerHeight, Time.deltaTime * m_crouchSpeed);
-                // Delta height (difference in height changed from MoveTowards)
-                float heightDelta = newHeight - m_characterController.height;
-                // Set characterController newHeight
-                m_characterController.height = newHeight;
-
-                // Set character controller position (rises as much as characterController height falls)
-                m_characterController.transform.position = new Vector3(m_characterController.transform.position.x,
-                    m_characterController.transform.position.y + heightDelta,
-                    m_characterController.transform.position.z);
-            }
-
-            // Reset character controller center
-            if (m_characterController.center.y != m_originalCharacterControllerCenterY)
-                m_characterController.center = new Vector3(m_characterController.center.x,
-                    m_originalCharacterControllerCenterY - (m_originalCharacterControllerHeight - m_characterController.height) * .5f,
-                    m_characterController.center.z);
-            
-            // Reset camera height
-            if (m_fpsCamera.transform.localPosition.y != m_originalCameraLocalHeight)
-                m_fpsCamera.transform.localPosition = new Vector3(m_fpsCamera.transform.localPosition.x,
-                    Mathf.MoveTowards(m_fpsCamera.transform.localPosition.y, m_originalCameraLocalHeight, Time.deltaTime * m_crouchSpeed),
-                    m_fpsCamera.transform.localPosition.z);    
+            case (CrouchState.Down):
+                CrouchDown();
+                break;
+            case (CrouchState.Up):
+                CrouchUp();
+                break;
+            case (CrouchState.Jump):
+                CrouchJump();
+                break;
         }
     }
 
-    // Falling
+    private void CrouchDown()
+    {
+        // Set character controller height
+        if (m_characterController.height != m_crouchHeight)
+            m_characterController.height = Mathf.MoveTowards(m_characterController.height, m_crouchHeight, Time.deltaTime * m_crouchSpeed);
+
+        // Set character controller center
+        if (m_characterController.center.y != m_originalCharacterControllerCenterY - m_crouchHeight * .5f)
+            m_characterController.center = new Vector3(m_characterController.center.x,
+                m_originalCharacterControllerCenterY - (m_originalCharacterControllerHeight - m_characterController.height) * .5f,
+                m_characterController.center.z);
+
+        // Set camera height
+        if (m_fpsCamera.transform.localPosition.y != m_crouchHeight)
+            m_fpsCamera.transform.localPosition = new Vector3(m_fpsCamera.transform.localPosition.x,
+                Mathf.MoveTowards(m_fpsCamera.transform.localPosition.y, m_crouchHeight, Time.deltaTime * m_crouchSpeed),
+                m_fpsCamera.transform.localPosition.z);
+    }
+
+    private void CrouchUp()
+    {
+        // Reset character controller height
+        if (m_characterController.height != m_originalCharacterControllerHeight)
+            m_characterController.height = Mathf.MoveTowards(m_characterController.height, m_originalCharacterControllerHeight, Time.deltaTime * m_crouchSpeed);
+
+        // Reset character controller center
+        if (m_characterController.center.y != m_originalCharacterControllerCenterY)
+            m_characterController.center = new Vector3(m_characterController.center.x,
+                m_originalCharacterControllerCenterY - (m_originalCharacterControllerHeight - m_characterController.height) * .5f,
+                m_characterController.center.z);
+
+        // Reset camera height
+        if (m_fpsCamera.transform.localPosition.y != m_originalCameraLocalHeight)
+            m_fpsCamera.transform.localPosition = new Vector3(m_fpsCamera.transform.localPosition.x,
+                Mathf.MoveTowards(m_fpsCamera.transform.localPosition.y, m_originalCameraLocalHeight, Time.deltaTime * m_crouchSpeed),
+                m_fpsCamera.transform.localPosition.z);
+    }
+
+    private void CrouchJump()
+    {
+        // Set character controller height
+        if (m_characterController.height != m_crouchHeight)
+        {
+            float newHeight = Mathf.MoveTowards(m_characterController.height, m_crouchHeight, Time.deltaTime * m_crouchSpeed);
+            // Delta height (difference in height changed from MoveTowards)
+            float heightDelta = newHeight - m_characterController.height;
+            // Set characterController newHeight
+            m_characterController.height = newHeight;
+
+            // Set character controller position (rises as much as characterController height falls)
+            m_characterController.transform.position = new Vector3(m_characterController.transform.position.x,
+                m_characterController.transform.position.y - heightDelta,
+                m_characterController.transform.position.z);
+        }
+
+        // Set character controller center
+        float characterControllerHeightDelta = m_originalCharacterControllerHeight - m_characterController.height;
+        if (m_characterController.center.y != m_originalCharacterControllerCenterY - m_crouchHeight * .5f)
+        {
+            m_characterController.center = new Vector3(m_characterController.center.x,
+                m_originalCharacterControllerCenterY - characterControllerHeightDelta * .5f,
+                m_characterController.center.z);
+        }
+
+        // Set camera height
+        if (m_fpsCamera.transform.localPosition.y != m_crouchHeight)
+            m_fpsCamera.transform.localPosition = new Vector3(m_fpsCamera.transform.localPosition.x,
+                Mathf.MoveTowards(m_fpsCamera.transform.localPosition.y, m_crouchHeight, Time.deltaTime * m_crouchSpeed),
+                m_fpsCamera.transform.localPosition.z);
+    }
+    
+    // ---------- Falling ---------- 
 
     // If falling damage occured, this is the place to do something about it. You can make the player
     // have hitpoints and remove some of them based on the distance fallen, add sound effects, etc.
@@ -416,7 +415,7 @@ public class FPSController : MonoBehaviour {
         print("Ouch! Fell " + fallDistance + " units!");
     }
 
-    // Audio
+    // ---------- Audio ---------- 
 
     private void PlayJumpingSound()
     {
@@ -468,7 +467,7 @@ public class FPSController : MonoBehaviour {
         m_footstepSounds[0] = m_audioSource.clip;
     }
 
-    // Move State
+    //  ---------- Move State ---------- 
 
     private void UpdateMoveState()
     {
@@ -502,22 +501,67 @@ public class FPSController : MonoBehaviour {
             m_moveState = MoveState.Walking;
     }
 
-    // OnControllerColliderHit
+    // ---------- OnControllerColliderHit ----------
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        Rigidbody body = hit.collider.attachedRigidbody;
-        //dont move the rigidbody if the character is on top of it
+        /*
+        if (hit.moveDirection.y >= -.3f)
+            Debug.Log("MoveDirectionY: " + hit.moveDirection.y);
+        */
+        //MoveObject01(hit);
+        MoveObject02(hit);
+        //MoveObject03(hit);
+    }
+
+    private void MoveObject01(ControllerColliderHit hit)
+    {
+        //Don't move the rigidbody if the character is on top of it
         if (m_collisionFlags == CollisionFlags.Below)
             return;
 
+        Rigidbody body = hit.collider.attachedRigidbody;
         if (body == null || body.isKinematic)
             return;
 
-        body.AddForceAtPosition(m_characterController.velocity * 0.1f, hit.point, ForceMode.Impulse);
+        body.AddForceAtPosition(m_characterController.velocity * m_pushPower, hit.point, ForceMode.Impulse);
     }
 
-    // OnGUI
+    private void MoveObject02(ControllerColliderHit hit)
+    {
+        Rigidbody body = hit.collider.attachedRigidbody;
+        if (body == null || body.isKinematic)
+            return;
+        
+        Vector3 force;
+        float m_weight = 10f;
+        if (hit.moveDirection.y < -.3f)
+            force = new Vector3(0, -.5f, 0) * m_gravity * m_weight;
+        else
+            force = m_characterController.velocity * m_pushPower;
+
+        body.AddForceAtPosition(force, hit.point);
+    }
+
+    // NOTE: Better to use AddForce instead of changing Rigidbody.velocity directly
+    private void MoveObject03(ControllerColliderHit hit)
+    {
+        Rigidbody body = hit.collider.attachedRigidbody;
+        if (body == null || body.isKinematic || hit.moveDirection.y < -.3f)
+            return;
+
+        // Calculate push direction from move direction,
+        // we only push objects to the sides never up and down
+        Vector3 pushDir = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
+
+        // If you know how fast your character is trying to move,
+        // then you can also multiply the push velocity by that.
+
+        // Apply the push
+        body.velocity = pushDir * m_pushPower * m_speed;
+    }
+
+    // ---------- OnGUI ---------- 
 
     private void OnGUI()
     {
@@ -534,12 +578,12 @@ public class FPSController : MonoBehaviour {
             "MoveState: " + m_moveState +
             "\nGrounded: " + m_grounded +
             "\nSpeed: " + m_speed +
-            "\nCCSpeed: " + m_characterController.velocity.magnitude +
+            "\nCCSpeed: " + m_characterController.velocity.magnitude.ToString("F2") +
             "\nInput-Move: " + m_input +
             "\nDesiredMove: " + transform.InverseTransformDirection(m_moveDirection) + 
             "\nMoveVelocity: " + transform.InverseTransformDirection(m_moveVelocity) + 
             "\nCameraInput: " + new Vector2(xInput, yInput) + 
-            "\nCameraRotation: " + new Vector2(yRot, xRot);
+            "\nCameraRotation: " + new Vector2(yRot, xRot).ToString("F1");
 
         //GUI.contentColor = Color.white;
         GUIStyle myGUIStyle = new GUIStyle();
