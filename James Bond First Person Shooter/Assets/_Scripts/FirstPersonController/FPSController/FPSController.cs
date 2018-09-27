@@ -269,7 +269,7 @@ public class FPSController : MonoBehaviour {
             }
         }
         // Else player is NOT grounded
-        // NOTE: Use speed at point player left the ground instead of m_speed which is set depending on MoveState
+        // NOTE: Use speed at point player left the ground instead of m_currSpeed which is set depending on MoveState
         // This allows other factors that affect speed while grounded to carry over while in air.
         // Use CharacterController.velocity.x,y,z so the speed can also be affected while falling.
         // Add to this speed if using airControl or airAssist

@@ -154,7 +154,7 @@ public class FPSWalkerCustom : MonoBehaviour {
             CheckCrouch();
 
             // Set speed
-            m_speed = Input.GetKey(KeyCode.LeftShift) ? m_runSpeed : m_walkSpeed;
+            m_currSpeed = Input.GetKey(KeyCode.LeftShift) ? m_runSpeed : m_walkSpeed;
             */
             m_moveDirection = (transform.forward * inputY + transform.right * inputX);
             debugTemp = m_moveDirection;
@@ -172,7 +172,7 @@ public class FPSWalkerCustom : MonoBehaviour {
 
             // Recalculate moveDirection directly from axes, adding a bit of -y to avoid bumping down inclines
             // m_moveDirection = new Vector3(inputX * inputModifyFactor, -m_antiBumpFactor, inputY * inputModifyFactor);
-            // m_moveDirection = transform.TransformDirection(m_moveDirection) * m_speed;
+            // m_moveDirection = transform.TransformDirection(m_moveDirection) * m_currSpeed;
             //playerControl = true;
 
             if (!Input.GetButton("Jump"))
@@ -215,7 +215,7 @@ public class FPSWalkerCustom : MonoBehaviour {
 
         CheckCrouch();
 
-        //Debug.Log("isGrounded:" + m_characterController.isGrounded + " - moveDirection:" + m_moveDirection + " - velocity:" + m_characterController.velocity + " - speed:"+m_characterController.velocity.magnitude+"("+m_speed+") - inputModifyFactor:"+inputModifyFactor + " - Time.deltaTime: " + Time.deltaTime);
+        //Debug.Log("isGrounded:" + m_characterController.isGrounded + " - moveDirection:" + m_moveDirection + " - velocity:" + m_characterController.velocity + " - speed:"+m_characterController.velocity.magnitude+"("+m_currSpeed+") - inputModifyFactor:"+inputModifyFactor + " - Time.deltaTime: " + Time.deltaTime);
         Debug.Log("Input: " + inputX + ", " + inputY + " - InputVector: " + m_camera.transform.InverseTransformDirection(debugTemp) + " - ProjectionVector: " + m_camera.transform.InverseTransformDirection(debugProject) + " - moveDirection:" + m_camera.transform.InverseTransformDirection(m_moveDirection) + " - velocity:" + m_camera.transform.InverseTransformDirection(m_characterController.velocity));
 
     }
